@@ -5,6 +5,7 @@ import { motion } from "framer-motion";
 import type { Variants } from "framer-motion";
 import type { Project } from "@/lib/projects";
 import { EASE } from "@/lib/motion";
+import UserFlowDiagram from "@/components/UserFlowDiagram";
 
 function PlaceholderImage({
   label,
@@ -85,19 +86,35 @@ export default function ProjectContent({ project }: { project: Project }) {
         viewport={{ once: true, margin: "-80px" }}
         className="px-6 md:px-12 py-20 border-b border-black/10"
       >
-        <div className="grid md:grid-cols-[1fr_2fr] gap-8 md:gap-16">
-          <h2 className="text-xs tracking-widest uppercase text-black/40 pt-1">
-            The Challenge
-          </h2>
-          <div>
-            <p className="text-base md:text-lg leading-relaxed text-black/65 mb-10">
-              {project.challenge}
-            </p>
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-              <PlaceholderImage label="Research Photo" />
-              <PlaceholderImage label="Whiteboard Session" />
+        <h2 className="text-xs tracking-widest uppercase text-black/40 mb-6">
+          The Challenge
+        </h2>
+        <p className="text-base md:text-lg leading-relaxed text-black/65 max-w-2xl mb-12">
+          {project.challenge}
+        </p>
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          {project.researchImage ? (
+            <div className="w-full border border-black/10 bg-black/[0.02] p-6 md:p-10">
+              <p className="text-[10px] tracking-[0.3em] uppercase text-black/25 mb-8">
+                Patient + Stakeholder Interviews
+              </p>
+              <Image
+                src={project.researchImage}
+                alt="Research"
+                width={0}
+                height={0}
+                sizes="(max-width: 640px) 100vw, 50vw"
+                className="w-full h-auto"
+              />
             </div>
-          </div>
+          ) : (
+            <PlaceholderImage label="Research Photo" />
+          )}
+          {project.slug === "inbound-health" ? (
+            <UserFlowDiagram />
+          ) : (
+            <PlaceholderImage label="Whiteboard Session" />
+          )}
         </div>
       </motion.section>
 

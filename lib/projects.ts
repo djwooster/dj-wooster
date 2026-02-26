@@ -1,16 +1,17 @@
 export interface Project {
-  slug: string
-  title: string
-  category: string
-  year: string
-  client: string
-  tags: string[]
-  overview: string
-  challenge: string
-  process: string
-  outcome: string
-  thumbnail?: string
-  heroImage?: string
+  slug: string;
+  title: string;
+  category: string;
+  year: string;
+  client: string;
+  tags: string[];
+  overview: string;
+  challenge: string;
+  process: string;
+  outcome: string;
+  thumbnail?: string;
+  heroImage?: string;
+  researchImage?: string;
 }
 
 export const projects: Project[] = [
@@ -20,7 +21,12 @@ export const projects: Project[] = [
     category: "Mobile App · UX Research",
     year: "2024",
     client: "Inbound Health",
-    tags: ["User Research", "Mobile Design", "Interaction Design", "Design Systems"],
+    tags: [
+      "User Research",
+      "Mobile Design",
+      "Interaction Design",
+      "Design Systems",
+    ],
     overview:
       "A hospital-at-home platform empowering patients to track biometric readings and stay connected to their care team through recovery. Designed for users with little to no prior tech experience — simple enough to use under stress, without any in-person guidance.",
     challenge:
@@ -30,7 +36,8 @@ export const projects: Project[] = [
     outcome:
       "Forecasted to reduce unnecessary inpatient stays by 50 patients per month per hospital, saving $900K–$1.8M annually. Patient satisfaction maintained at 4/5 or better through continuous biometric tracking and streamlined clinician workflows.",
     thumbnail: "/ipad-image-1.jpg",
-    heroImage: "/Home-vitals-current.png",
+    heroImage: "/mockup5.png",
+    researchImage: "/research-1.png",
   },
   {
     slug: "banking-reimagined",
@@ -54,7 +61,12 @@ export const projects: Project[] = [
     category: "E-commerce · UX Strategy",
     year: "2024",
     client: "Luxury Retail Brand",
-    tags: ["UX Strategy", "Information Architecture", "Visual Design", "A/B Testing"],
+    tags: [
+      "UX Strategy",
+      "Information Architecture",
+      "Visual Design",
+      "A/B Testing",
+    ],
     overview:
       "A luxury retail brand with world-class products was trapped in an outdated digital experience that failed to reflect the quality of what they sell. We redesigned the full purchase journey — from discovery through to post-purchase — to earn and sustain customer trust.",
     challenge:
@@ -64,4 +76,4 @@ export const projects: Project[] = [
     outcome:
       "Conversion rate increased by 41%. Average order value grew 28%. Bounce rate on product pages dropped from 62% to 31%, and the brand now ranks in the top three in its category for digital experience benchmarks.",
   },
-]
+];
