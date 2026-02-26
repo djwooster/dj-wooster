@@ -1,17 +1,20 @@
-"use client"
+"use client";
 
-import { motion } from "framer-motion"
-import { EASE } from "@/lib/motion"
+import { motion } from "framer-motion";
+import { EASE } from "@/lib/motion";
 
 const stats = [
   { value: "8+", label: "Years of experience" },
   { value: "40+", label: "Projects delivered" },
   { value: "15", label: "Companies worked with" },
-]
+];
 
 export default function About() {
   return (
-    <section id="about" className="px-6 md:px-12 py-24 border-t border-black/10">
+    <section
+      id="about"
+      className="px-6 md:px-12 py-24 border-t border-black/10"
+    >
       <div className="grid md:grid-cols-2 gap-12 md:gap-24">
         {/* Left */}
         <motion.div
@@ -20,7 +23,7 @@ export default function About() {
           viewport={{ once: true, margin: "-80px" }}
           transition={{ duration: 0.8, ease: EASE }}
         >
-          <p className="text-xs tracking-widest uppercase text-black/40 mb-6">
+          <p className="text-sm tracking-widest uppercase text-black/40 mb-6">
             About
           </p>
           <h2 className="text-4xl md:text-5xl lg:text-6xl font-black tracking-tight leading-[0.92]">
@@ -79,5 +82,5 @@ export default function About() {
         </motion.div>
       </div>
     </section>
-  )
+  );
 }

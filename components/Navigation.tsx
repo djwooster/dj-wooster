@@ -1,27 +1,27 @@
-"use client"
+"use client";
 
-import { useState, useEffect } from "react"
-import Link from "next/link"
-import { motion, AnimatePresence } from "framer-motion"
-import MobileMenu from "./MobileMenu"
-import { EASE, scrollToSection } from "@/lib/motion"
+import { useState, useEffect } from "react";
+import Link from "next/link";
+import { motion, AnimatePresence } from "framer-motion";
+import MobileMenu from "./MobileMenu";
+import { EASE, scrollToSection } from "@/lib/motion";
 
 const navLinks = [
   { label: "Work", href: "/#work" },
   { label: "Process", href: "/#process" },
   { label: "About", href: "/#about" },
   { label: "Contact", href: "mailto:hello@djwooster.com" },
-]
+];
 
 export default function Navigation() {
-  const [isOpen, setIsOpen] = useState(false)
-  const [scrolled, setScrolled] = useState(false)
+  const [isOpen, setIsOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
-    const handleScroll = () => setScrolled(window.scrollY > 40)
-    window.addEventListener("scroll", handleScroll, { passive: true })
-    return () => window.removeEventListener("scroll", handleScroll)
-  }, [])
+    const handleScroll = () => setScrolled(window.scrollY > 40);
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   return (
     <>
@@ -38,7 +38,7 @@ export default function Navigation() {
         {/* Logo */}
         <Link
           href="/"
-          className="text-sm font-semibold tracking-[0.25em] uppercase hover:opacity-60 transition-opacity"
+          className="text-sm font-medium tracking-[0.-25em] uppercase hover:opacity-60 transition-opacity"
         >
           DJ Wooster
         </Link>
@@ -73,5 +73,5 @@ export default function Navigation() {
         {isOpen && <MobileMenu onClose={() => setIsOpen(false)} />}
       </AnimatePresence>
     </>
-  )
+  );
 }

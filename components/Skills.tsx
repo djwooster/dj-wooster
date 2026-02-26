@@ -1,7 +1,7 @@
-"use client"
+"use client";
 
-import { motion } from "framer-motion"
-import { EASE } from "@/lib/motion"
+import { motion } from "framer-motion";
+import { EASE } from "@/lib/motion";
 
 const skills = [
   {
@@ -52,11 +52,14 @@ const skills = [
     description:
       "Scalable component libraries and documentation that keep product teams aligned and moving fast.",
   },
-]
+];
 
 export default function Skills() {
   return (
-    <section id="process" className="px-6 md:px-12 py-24 border-t border-black/10">
+    <section
+      id="process"
+      className="px-6 md:px-12 py-24 border-t border-black/10"
+    >
       {/* Header */}
       <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-16">
         <motion.h2
@@ -70,7 +73,7 @@ export default function Skills() {
           <br />
           end to end.
         </motion.h2>
-        <motion.span
+        {/* <motion.span
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
@@ -78,7 +81,7 @@ export default function Skills() {
           className="text-xs tracking-widest uppercase text-black/40"
         >
           What I do
-        </motion.span>
+        </motion.span> */}
       </div>
 
       {/* Grid */}
@@ -109,5 +112,5 @@ export default function Skills() {
         ))}
       </div>
     </section>
-  )
+  );
 }

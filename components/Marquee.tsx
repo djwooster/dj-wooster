@@ -1,29 +1,29 @@
-"use client"
+"use client";
 
-import { motion } from "framer-motion"
+import { motion } from "framer-motion";
 
 const companies = [
-  "Airbnb",
-  "Spotify",
-  "Apple",
-  "Google",
-  "Meta",
-  "Netflix",
-  "Stripe",
-  "Adobe",
-  "Figma",
-  "Notion",
-  "Shopify",
-  "Slack",
-]
+  "Memorial Sloan Kettering",
+  "US Bank",
+  "Inbound Health",
+  "National Grid",
+  // "Meta",
+  // "Netflix",
+  // "Stripe",
+  // "Adobe",
+  // "Figma",
+  // "Notion",
+  // "Shopify",
+  // "Slack",
+];
 
 // Duplicate for seamless loop
-const track = [...companies, ...companies]
+const track = [...companies, ...companies];
 
 export default function Marquee() {
   return (
     <section className="py-16 border-t border-b border-black/10 overflow-hidden">
-      <p className="px-6 md:px-12 text-[10px] tracking-[0.3em] uppercase text-black/25 mb-8">
+      <p className="px-6 md:px-12 text-[12px] tracking-[0.3em] uppercase text-black/50 mb-8">
         Companies I&apos;ve worked with
       </p>
 
@@ -48,5 +48,5 @@ export default function Marquee() {
         </motion.div>
       </div>
     </section>
-  )
+  );
 }

@@ -1,8 +1,8 @@
-"use client"
+"use client";
 
-import Link from "next/link"
-import { motion } from "framer-motion"
-import { EASE } from "@/lib/motion"
+import Link from "next/link";
+import { motion } from "framer-motion";
+import { EASE } from "@/lib/motion";
 
 export default function Footer() {
   return (
@@ -15,17 +15,17 @@ export default function Footer() {
         transition={{ duration: 0.8, ease: EASE }}
         className="mb-20"
       >
-        <h2 className="text-5xl md:text-7xl lg:text-9xl font-black tracking-tight leading-[0.88]">
+        <h2 className="text-5xl md:text-7xl lg:text-9xl font-bold tracking-tight leading-[0.88]">
           Let&apos;s make
           <br />
           something great.
         </h2>
         <a
-          href="mailto:hello@djwooster.com"
+          href="mailto:contact@djwooster.com"
           className="inline-flex items-center gap-3 mt-10 text-xs tracking-widest uppercase group"
         >
           <span className="border-b border-black pb-0.5 group-hover:pr-4 transition-all duration-300">
-            hello@djwooster.com
+            contact@djwooster.com
           </span>
           <span className="group-hover:translate-x-1 transition-transform duration-300">
             →
@@ -57,9 +57,13 @@ export default function Footer() {
 
         <div className="flex gap-8">
           {[
-            { label: "LinkedIn", href: "#" },
-            { label: "Dribbble", href: "#" },
-            { label: "Instagram", href: "#" },
+            {
+              label: "LinkedIn",
+              href: "https://www.linkedin.com/in/djwooster/",
+              openInNewTab: true,
+            },
+            // { label: "Dribbble", href: "#" },
+            // { label: "Instagram", href: "#" },
           ].map((link) => (
             <a
               key={link.label}
@@ -72,5 +76,5 @@ export default function Footer() {
         </div>
       </div>
     </footer>
-  )
+  );
 }

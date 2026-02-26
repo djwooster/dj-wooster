@@ -9,13 +9,13 @@ import { EASE } from "@/lib/motion";
 export default function FeaturedProjects() {
   return (
     <section id="work" className="px-6 md:px-12 py-24 border-t border-black/10">
-      <div className="flex items-baseline justify-between mb-10">
-        <h2 className="text-xs tracking-widest uppercase text-black/40">
-          Selected Work
+      <div className="flex items-baseline justify-between mb-6">
+        <h2 className="text-md tracking-widest uppercase text-black/60">
+          Recent Work
         </h2>
-        <span className="text-xs tracking-widest uppercase text-black/30 font-mono">
+        {/* <span className="text-xs tracking-widest uppercase text-black/30 font-mono">
           (03)
-        </span>
+        </span> */}
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
