@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { motion } from "framer-motion";
 import Link from "next/link";
 import { projects } from "@/lib/projects";
@@ -17,7 +18,7 @@ export default function FeaturedProjects() {
         </span>
       </div>
 
-      <div>
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
         {projects.map((project, i) => (
           <motion.div
             key={project.slug}
@@ -32,40 +33,45 @@ export default function FeaturedProjects() {
           >
             <Link
               href={`/projects/${project.slug}`}
-              className="group flex flex-col md:flex-row md:items-center justify-between gap-6 md:gap-12 py-10 border-b border-black/10 hover:border-black transition-colors duration-300"
+              className="group flex flex-col gap-6 py-4"
             >
-              {/* Index + Title */}
-              <div className="flex items-start gap-6 md:gap-8 flex-1">
-                <span className="text-xs text-black/25 tracking-widest font-mono mt-2 flex-shrink-0">
-                  {String(i + 1).padStart(2, "0")}
-                </span>
+              {/* Thumbnail */}
+              <motion.div
+                className="w-full h-[60vw] md:h-[28vw] bg-black/[0.04] overflow-hidden relative"
+                whileHover={{ scale: 0.99 }}
+                transition={{ duration: 0.5, ease: EASE }}
+              >
+                {project.thumbnail ? (
+                  <Image
+                    src={project.thumbnail}
+                    alt={project.title}
+                    fill
+                    className="object-cover"
+                    sizes="(max-width: 768px) 100vw, 33vw"
+                  />
+                ) : (
+                  <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-black/8 to-transparent">
+                    <span className="text-[10px] tracking-[0.3em] uppercase text-black/20">
+                      Preview
+                    </span>
+                  </div>
+                )}
+              </motion.div>
+
+              {/* Title + Arrow */}
+              <div className="flex items-start justify-between gap-4">
                 <div>
-                  <h3 className="text-3xl md:text-5xl lg:text-6xl font-black tracking-tight leading-none group-hover:translate-x-2 transition-transform duration-400 ease-out">
+                  <h3 className="text-xl md:text-2xl font-black tracking-tight leading-tight group-hover:translate-x-2 transition-transform duration-300 ease-out">
                     {project.title}
                   </h3>
-                  <p className="text-sm text-black/40 mt-2 tracking-wide">
+                  <p className="text-sm text-black/40 mt-1 tracking-wide">
                     {project.category} &nbsp;·&nbsp; {project.year}
                   </p>
                 </div>
+                <span className="text-xl text-black/20 group-hover:text-black group-hover:translate-x-2 transition-all duration-300 shrink-0 mt-1">
+                  →
+                </span>
               </div>
-
-              {/* Thumbnail */}
-              <motion.div
-                className="w-full md:w-52 h-36 md:h-32 bg-black/[0.04] overflow-hidden flex-shrink-0"
-                whileHover={{ scale: 0.96 }}
-                transition={{ duration: 0.4, ease: EASE }}
-              >
-                <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-black/8 to-transparent">
-                  <span className="text-[10px] tracking-[0.3em] uppercase text-black/20">
-                    Preview
-                  </span>
-                </div>
-              </motion.div>
-
-              {/* Arrow */}
-              <span className="hidden md:block text-xl text-black/20 group-hover:text-black group-hover:translate-x-2 transition-all duration-300 flex-shrink-0">
-                →
-              </span>
             </Link>
           </motion.div>
         ))}

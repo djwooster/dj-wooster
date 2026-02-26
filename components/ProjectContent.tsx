@@ -1,11 +1,18 @@
-"use client"
+"use client";
 
-import { motion } from "framer-motion"
-import type { Variants } from "framer-motion"
-import type { Project } from "@/lib/projects"
-import { EASE } from "@/lib/motion"
+import Image from "next/image";
+import { motion } from "framer-motion";
+import type { Variants } from "framer-motion";
+import type { Project } from "@/lib/projects";
+import { EASE } from "@/lib/motion";
 
-function PlaceholderImage({ label, tall = false }: { label: string; tall?: boolean }) {
+function PlaceholderImage({
+  label,
+  tall = false,
+}: {
+  label: string;
+  tall?: boolean;
+}) {
   return (
     <div
       className={`w-full bg-black/[0.04] flex items-center justify-center ${tall ? "h-[60vw] md:h-[50vh]" : "h-[45vw] md:h-[40vh]"}`}
@@ -14,7 +21,7 @@ function PlaceholderImage({ label, tall = false }: { label: string; tall?: boole
         {label}
       </span>
     </div>
-  )
+  );
 }
 
 const sectionVariants: Variants = {
@@ -24,7 +31,7 @@ const sectionVariants: Variants = {
     y: 0,
     transition: { duration: 0.8, ease: EASE },
   },
-}
+};
 
 export default function ProjectContent({ project }: { project: Project }) {
   return (
@@ -55,7 +62,19 @@ export default function ProjectContent({ project }: { project: Project }) {
         transition={{ duration: 0.7 }}
         className="px-6 md:px-12 py-8 border-b border-black/10"
       >
-        <PlaceholderImage label="Hero Image — Full Width" tall />
+        {project.heroImage ? (
+          <Image
+            src={project.heroImage}
+            alt={project.title}
+            width={0}
+            height={0}
+            sizes="(max-width: 768px) 100vw, 60vw"
+            className="w-[75vw] h-auto mx-auto block"
+            priority
+          />
+        ) : (
+          <PlaceholderImage label="Hero Image — Full Width" tall />
+        )}
       </motion.div>
 
       {/* Challenge */}
@@ -147,5 +166,5 @@ export default function ProjectContent({ project }: { project: Project }) {
         </div>
       </motion.section>
     </article>
-  )
+  );
 }

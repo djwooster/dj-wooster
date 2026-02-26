@@ -9,6 +9,8 @@ export interface Project {
   challenge: string
   process: string
   outcome: string
+  thumbnail?: string
+  heroImage?: string
 }
 
 export const projects: Project[] = [
@@ -27,6 +29,8 @@ export const projects: Project[] = [
       "I conducted 14 interviews across clinical staff and patients across four iterative phases — from early market validation through MVP. Each test round directly changed the design: bottom navigation was replaced after 3 of 4 users failed key tasks, and all 8 usability participants preferred a data table over charts for viewing biometric history.",
     outcome:
       "Forecasted to reduce unnecessary inpatient stays by 50 patients per month per hospital, saving $900K–$1.8M annually. Patient satisfaction maintained at 4/5 or better through continuous biometric tracking and streamlined clinician workflows.",
+    thumbnail: "/ipad-image-1.jpg",
+    heroImage: "/Home-vitals-current.png",
   },
   {
     slug: "banking-reimagined",
