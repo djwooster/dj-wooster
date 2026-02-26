@@ -1,14 +1,14 @@
-"use client"
+"use client";
 
-import { motion } from "framer-motion"
-import Link from "next/link"
-import { projects } from "@/lib/projects"
-import { EASE } from "@/lib/motion"
+import { motion } from "framer-motion";
+import Link from "next/link";
+import { projects } from "@/lib/projects";
+import { EASE } from "@/lib/motion";
 
 export default function FeaturedProjects() {
   return (
     <section id="work" className="px-6 md:px-12 py-24 border-t border-black/10">
-      <div className="flex items-baseline justify-between mb-20">
+      <div className="flex items-baseline justify-between mb-10">
         <h2 className="text-xs tracking-widest uppercase text-black/40">
           Selected Work
         </h2>
@@ -71,5 +71,5 @@ export default function FeaturedProjects() {
         ))}
       </div>
     </section>
-  )
+  );
 }

@@ -13,6 +13,22 @@ export interface Project {
 
 export const projects: Project[] = [
   {
+    slug: "inbound-health",
+    title: "Patient iPad Experience",
+    category: "Mobile App · UX Research",
+    year: "2024",
+    client: "Inbound Health",
+    tags: ["User Research", "Mobile Design", "Interaction Design", "Design Systems"],
+    overview:
+      "A hospital-at-home platform empowering patients to track biometric readings and stay connected to their care team through recovery. Designed for users with little to no prior tech experience — simple enough to use under stress, without any in-person guidance.",
+    challenge:
+      "Hospital systems needed to expand capacity without compromising care quality. Patients managing recovery at home were anxious about unfamiliar technology, and the interface had to work correctly for the least tech-savvy user in the room, every time.",
+    process:
+      "I conducted 14 interviews across clinical staff and patients across four iterative phases — from early market validation through MVP. Each test round directly changed the design: bottom navigation was replaced after 3 of 4 users failed key tasks, and all 8 usability participants preferred a data table over charts for viewing biometric history.",
+    outcome:
+      "Forecasted to reduce unnecessary inpatient stays by 50 patients per month per hospital, saving $900K–$1.8M annually. Patient satisfaction maintained at 4/5 or better through continuous biometric tracking and streamlined clinician workflows.",
+  },
+  {
     slug: "banking-reimagined",
     title: "Banking Reimagined",
     category: "Mobile App · UX / UI",
@@ -43,21 +59,5 @@ export const projects: Project[] = [
       "Starting with competitive benchmarking and 24 in-depth customer interviews, we rebuilt the information architecture from the ground up. A full visual identity audit informed a new design language — restrained, confident, and unmistakably premium — before a single pixel was placed.",
     outcome:
       "Conversion rate increased by 41%. Average order value grew 28%. Bounce rate on product pages dropped from 62% to 31%, and the brand now ranks in the top three in its category for digital experience benchmarks.",
-  },
-  {
-    slug: "flow-dashboard",
-    title: "Flow Dashboard",
-    category: "SaaS Product · Design Systems",
-    year: "2023",
-    client: "B2B Analytics Platform",
-    tags: ["Design Systems", "Data Visualisation", "Interaction Design", "Accessibility"],
-    overview:
-      "A B2B analytics platform serving enterprise clients needed a dashboard that could surface complex, multi-dimensional data in a way that non-technical stakeholders could act on immediately — without losing the depth that power users depended on.",
-    challenge:
-      "The existing dashboard required an average of 14 clicks to answer the most common user questions. Data was displayed as raw numbers with no contextual framing, no recommended actions, and no clear visual hierarchy to guide attention.",
-    process:
-      "We introduced progressive disclosure, a consistent data visualisation system built on a 12-column grid, and inline AI-generated summaries that contextualised key metrics. WCAG 2.1 AA compliance and comprehensive keyboard navigation were built in from day one.",
-    outcome:
-      "Time-to-insight dropped from an average of 8 minutes to 90 seconds. NPS score jumped from 24 to 61. The design system reduced engineering delivery time by 40% across all subsequent feature releases.",
   },
 ]
