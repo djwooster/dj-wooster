@@ -46,7 +46,7 @@ export default function ProjectContent({ project }: { project: Project }) {
         className="px-6 md:px-12 py-20 border-b border-black/10"
       >
         <div className="grid md:grid-cols-[1fr_2fr] gap-8 md:gap-16">
-          <h2 className="text-xs tracking-widest uppercase text-black/40 pt-1">
+          <h2 className="text-base font-bold tracking-wide uppercase text-black pt-1">
             Overview
           </h2>
           <p className="text-xl md:text-2xl leading-relaxed font-light text-black/80">
@@ -86,7 +86,7 @@ export default function ProjectContent({ project }: { project: Project }) {
         viewport={{ once: true, margin: "-80px" }}
         className="px-6 md:px-12 py-20 border-b border-black/10"
       >
-        <h2 className="text-xs tracking-widest uppercase text-black/40 mb-6">
+        <h2 className="text-2xl font-bold tracking-[-.03em] uppercase text-black mb-3">
           The Challenge
         </h2>
         <p className="text-base md:text-lg leading-relaxed text-black/65 max-w-2xl mb-12">
@@ -126,34 +126,64 @@ export default function ProjectContent({ project }: { project: Project }) {
         viewport={{ once: true, margin: "-80px" }}
         className="px-6 md:px-12 py-20 border-b border-black/10"
       >
-        <div className="grid md:grid-cols-[1fr_2fr] gap-8 md:gap-16">
-          <h2 className="text-xs tracking-widest uppercase text-black/40 pt-1">
-            Process
-          </h2>
-          <div>
-            <p className="text-base md:text-lg leading-relaxed text-black/65 mb-10">
-              {project.process}
-            </p>
-          </div>
-        </div>
+        <h2 className="text-2xl font-bold tracking-[-.03em] uppercase text-black mb-3">
+          Process
+        </h2>
+        <p className="text-base md:text-lg leading-relaxed text-black/65 max-w-2xl mb-12">
+          {project.process}
+        </p>
 
         {/* Process image grid */}
-        <div className="mt-8 grid grid-cols-1 md:grid-cols-3 gap-4">
-          <PlaceholderImage label="Wireframes" />
-          <PlaceholderImage label="Prototype" />
-          <PlaceholderImage label="User Testing" />
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          {[
+            { src: project.processImage1, label: "Wireframes" },
+            { src: project.processImage2, label: "Prototype" },
+          ].map(({ src, label }) => (
+            <div key={label} className="w-full border border-black/10 bg-black/[0.02] p-6">
+              {src ? (
+                <Image
+                  src={src}
+                  alt={label}
+                  width={0}
+                  height={0}
+                  sizes="(max-width: 768px) 100vw, 33vw"
+                  className="w-full h-auto"
+                />
+              ) : (
+                <div className="flex items-center justify-center h-32">
+                  <span className="text-[10px] tracking-[0.3em] uppercase text-black/20">
+                    {label}
+                  </span>
+                </div>
+              )}
+            </div>
+          ))}
         </div>
       </motion.section>
 
-      {/* Final design image */}
+      {/* Final design images */}
       <motion.div
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
         viewport={{ once: true }}
         transition={{ duration: 0.7 }}
-        className="px-6 md:px-12 py-8 border-b border-black/10"
+        className="px-6 md:px-12 py-8 border-b border-black/10 flex flex-col items-center gap-6"
       >
-        <PlaceholderImage label="Final Design — Full Width" tall />
+        {project.finalImages && project.finalImages.length > 0 ? (
+          project.finalImages.map((src, i) => (
+            <Image
+              key={i}
+              src={src}
+              alt={`Final design ${i + 1}`}
+              width={0}
+              height={0}
+              sizes="80vw"
+              className="w-[80vw] h-auto block"
+            />
+          ))
+        ) : (
+          <PlaceholderImage label="Final Design — Full Width" tall />
+        )}
       </motion.div>
 
       {/* Outcome */}
@@ -165,7 +195,7 @@ export default function ProjectContent({ project }: { project: Project }) {
         className="px-6 md:px-12 py-20"
       >
         <div className="grid md:grid-cols-[1fr_2fr] gap-8 md:gap-16">
-          <h2 className="text-xs tracking-widest uppercase text-black/40 pt-1">
+          <h2 className="text-base font-bold tracking-wide uppercase text-black pt-1">
             Outcome
           </h2>
           <div>

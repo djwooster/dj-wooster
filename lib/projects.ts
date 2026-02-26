@@ -12,6 +12,9 @@ export interface Project {
   thumbnail?: string;
   heroImage?: string;
   researchImage?: string;
+  processImage1?: string;
+  processImage2?: string;
+  finalImages?: string[];
 }
 
 export const projects: Project[] = [
@@ -38,6 +41,9 @@ export const projects: Project[] = [
     thumbnail: "/ipad-image-1.jpg",
     heroImage: "/mockup5.png",
     researchImage: "/research-1.png",
+    processImage1: "/wireframe-01.png",
+    processImage2: "/wireframe-2.png",
+    finalImages: ["/video-visit.png", "/details.png", "/calendar.png"],
   },
   {
     slug: "banking-reimagined",
