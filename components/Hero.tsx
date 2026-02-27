@@ -40,7 +40,7 @@ export default function Hero() {
         variants={containerVariants}
         initial="hidden"
         animate="visible"
-        className="text-[15vw] md:text-[10vw] lg:text-[7vw] font-bold leading-[0.88] tracking-tight"
+        className="text-[15vw] md:text-[10vw] lg:text-[7vw] font-black leading-[0.88] tracking-tight"
       >
         {headline.map((word, i) => (
           <span

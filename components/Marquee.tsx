@@ -40,7 +40,7 @@ export default function Marquee() {
           {track.map((name, i) => (
             <span
               key={`${name}-${i}`}
-              className="text-4xl md:text-6xl font-black tracking-tight text-black/10 hover:text-black/80 transition-colors duration-500 whitespace-nowrap cursor-default select-none"
+              className="text-3xl md:text-4xl font-black tracking-tight text-black/10 hover:text-black/80 transition-colors duration-500 whitespace-nowrap cursor-default select-none"
             >
               {name}
             </span>

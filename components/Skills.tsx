@@ -67,7 +67,7 @@ export default function Skills() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.7, ease: EASE }}
-          className="text-4xl md:text-6xl lg:text-7xl font-black tracking-tight leading-[0.9]"
+          className="text-4xl md:text-6xl lg:text-6xl font-black tracking-tight leading-[0.9]"
         >
           The full process,
           <br />

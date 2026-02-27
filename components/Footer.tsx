@@ -15,7 +15,7 @@ export default function Footer() {
         transition={{ duration: 0.8, ease: EASE }}
         className="mb-20"
       >
-        <h2 className="text-5xl md:text-7xl lg:text-9xl font-bold tracking-tight leading-[0.88]">
+        <h2 className="text-5xl lg:text-6xl font-black tracking-tight leading-[0.88]">
           Let&apos;s make
           <br />
           something great.
