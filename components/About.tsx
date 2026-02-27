@@ -5,7 +5,7 @@ import { EASE } from "@/lib/motion";
 
 const stats = [
   { value: "8+", label: "Years of experience" },
-  { value: "12s+", label: "Projects delivered" },
+  { value: "12+", label: "Projects delivered" },
   { value: "8+", label: "Companies worked with" },
 ];
 
