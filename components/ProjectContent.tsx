@@ -49,7 +49,7 @@ export default function ProjectContent({ project }: { project: Project }) {
         className="px-6 md:px-12 py-20 border-b border-black/10"
       >
         <div className="grid md:grid-cols-[1fr_2fr] gap-8 md:gap-16">
-          <h2 className="text-base font-bold tracking-wide uppercase text-black pt-1">
+          <h2 className="text-3xl font-bold tracking-[-.03em] uppercase text-black pt-1">
             Overview
           </h2>
           <p className="text-xl md:text-2xl leading-relaxed font-light text-black/80">
@@ -98,7 +98,7 @@ export default function ProjectContent({ project }: { project: Project }) {
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           {project.researchImage ? (
             <div className="w-full border border-black/10 bg-black/[0.02] p-6 md:p-10">
-              <p className="text-[10px] tracking-[0.3em] uppercase text-black/25 mb-8">
+              <p className="text-[11px] font-medium tracking-[0.3em] uppercase text-black/50 mb-8">
                 {project.researchImageLabel ?? "User Research"}
               </p>
               <Image
@@ -184,7 +184,7 @@ export default function ProjectContent({ project }: { project: Project }) {
           transition={{ duration: 0.7 }}
           className="px-6 md:px-12 py-16 border-b border-black/10 flex flex-col items-center"
         >
-          <p className="text-[10px] tracking-[0.3em] uppercase text-black/25 mb-10 self-start">
+          <p className="text-[11px] font-medium tracking-[0.3em] uppercase text-black/50 mb-10 self-start">
             Prototype
           </p>
           {/* eslint-disable-next-line @next/next/no-img-element */}

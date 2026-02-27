@@ -17,7 +17,7 @@ export default function ProjectHero({ project }: { project: Project }) {
       >
         <Link
           href="/#work"
-          className="inline-flex items-center gap-2 text-xs tracking-widest uppercase text-black/40 hover:text-black transition-colors group"
+          className="inline-flex items-center gap-2 text-xs tracking-widest uppercase text-black/55 hover:text-black transition-colors group"
         >
           <span className="group-hover:-translate-x-1 transition-transform duration-200">
             ←
@@ -33,15 +33,15 @@ export default function ProjectHero({ project }: { project: Project }) {
         transition={{ duration: 0.6, delay: 0.15, ease: EASE }}
         className="flex flex-wrap items-center gap-4 mb-8"
       >
-        <span className="text-xs tracking-widest uppercase text-black/40">
+        <span className="text-xs tracking-widest uppercase text-black/55">
           {project.year}
         </span>
         <span className="text-black/20">·</span>
-        <span className="text-xs tracking-widest uppercase text-black/40">
+        <span className="text-xs tracking-widest uppercase text-black/55">
           {project.client}
         </span>
         <span className="text-black/20">·</span>
-        <span className="text-xs tracking-widest uppercase text-black/40">
+        <span className="text-xs tracking-widest uppercase text-black/55">
           {project.category}
         </span>
       </motion.div>
@@ -68,7 +68,7 @@ export default function ProjectHero({ project }: { project: Project }) {
         {project.tags.map((tag) => (
           <span
             key={tag}
-            className="px-4 py-1.5 border border-black/15 text-[10px] tracking-widest uppercase text-black/50"
+            className="px-4 py-1.5 border border-black/25 text-[10px] tracking-widest uppercase text-black/70"
           >
             {tag}
           </span>

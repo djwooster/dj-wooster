@@ -256,7 +256,7 @@ export default function WorkforceWireframes() {
     <div className="grid md:grid-cols-[2fr_1fr] gap-12 items-start">
       {/* Wireframes */}
       <div>
-        <p className="text-[10px] tracking-[0.3em] uppercase text-black/25 mb-8">
+        <p className="text-[11px] font-medium tracking-[0.3em] uppercase text-black/50 mb-8">
           Wireframes
         </p>
         <div className="grid grid-cols-3 gap-4 md:gap-6">
@@ -283,7 +283,7 @@ export default function WorkforceWireframes() {
 
       {/* Design insights */}
       <div>
-        <p className="text-[10px] tracking-[0.3em] uppercase text-black/25 mb-8">
+        <p className="text-[11px] font-medium tracking-[0.3em] uppercase text-black/50 mb-8">
           Key Decisions
         </p>
         <div className="space-y-6">

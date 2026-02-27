@@ -17,6 +17,7 @@ export interface Project {
   processImage1?: string;
   processImage2?: string;
   finalImages?: string[];
+  comingSoon?: boolean;
 }
 
 export const projects: Project[] = [
@@ -72,14 +73,16 @@ export const projects: Project[] = [
       "I led three rounds of research with 18 employees spanning hourly field workers, salaried office staff, and HR administrators. A key early insight changed the entire clock-in flow: field workers were often checking in under real time pressure — standing outside in cold weather, wearing work gloves. The gesture had to work in two taps or fewer, with no login prompt. I mapped 8 core user journeys, consolidated 90+ screens into 34 clearly scoped views, and built a component library the engineering team could ship incrementally alongside the legacy system.",
     outcome:
       "Time-entry errors dropped 67% in the first quarter after launch. Benefits enrollment completion rose from 57% to 89%. The App Store rating climbed from 2.1 to 4.6 stars within six months of release. HR support call volume fell 34%, saving an estimated $800K annually in overhead.",
+    thumbnail: "/workforce-thumbnail.jpg",
     prototypeGif: "/workforce-gif-2.gif",
   },
   {
     slug: "commerce-elevated",
-    title: "Commerce Elevated",
-    category: "E-commerce · UX Strategy",
+    title: "Redesigned Clinical Systems",
+    comingSoon: true,
+    category: "UX Strategy",
     year: "2024",
-    client: "Luxury Retail Brand",
+    client: "Enterprise HR + Payroll Platform",
     tags: [
       "UX Strategy",
       "Information Architecture",

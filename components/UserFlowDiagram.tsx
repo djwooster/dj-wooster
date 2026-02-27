@@ -24,7 +24,7 @@ const tasks = [
 export default function UserFlowDiagram() {
   return (
     <div className="w-full border border-black/10 bg-black/[0.02] p-6 md:p-10">
-      <p className="text-[10px] tracking-[0.3em] uppercase text-black/25 mb-8">
+      <p className="text-[11px] font-medium tracking-[0.3em] uppercase text-black/50 mb-8">
         Patient User Flow
       </p>
 
