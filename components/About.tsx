@@ -5,8 +5,8 @@ import { EASE } from "@/lib/motion";
 
 const stats = [
   { value: "8+", label: "Years of experience" },
-  { value: "40+", label: "Projects delivered" },
-  { value: "15", label: "Companies worked with" },
+  { value: "25+", label: "Projects delivered" },
+  { value: "20+", label: "Companies worked with" },
 ];
 
 export default function About() {

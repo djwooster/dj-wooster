@@ -12,6 +12,8 @@ export interface Project {
   thumbnail?: string;
   heroImage?: string;
   researchImage?: string;
+  researchImageLabel?: string;
+  prototypeGif?: string;
   processImage1?: string;
   processImage2?: string;
   finalImages?: string[];
@@ -29,6 +31,8 @@ export const projects: Project[] = [
       "Mobile Design",
       "Interaction Design",
       "Design Systems",
+      "Information Architecture",
+      "Usability Testing",
     ],
     overview:
       "A hospital-at-home platform empowering patients to track biometric readings and stay connected to their care team through recovery. Designed for users with little to no prior tech experience — simple enough to use under stress, without any in-person guidance.",
@@ -41,25 +45,34 @@ export const projects: Project[] = [
     thumbnail: "/ipad-image-1.jpg",
     heroImage: "/mockup5.png",
     researchImage: "/research-1.png",
+    researchImageLabel: "Patient + Stakeholder Interviews",
     processImage1: "/wireframe-01.png",
     processImage2: "/wireframe-2.png",
     finalImages: ["/video-visit.png", "/details.png", "/calendar.png"],
   },
   {
-    slug: "banking-reimagined",
-    title: "Banking Reimagined",
-    category: "Mobile App · UX / UI",
-    year: "2024",
-    client: "FinTech Startup",
-    tags: ["User Research", "Mobile Design", "Prototyping", "Design Systems"],
+    slug: "workforce-mobile",
+    title: "Workforce Mobile",
+    category: "iOS App · UX Research",
+    year: "2026",
+    client: "Enterprise HR Platform",
+    tags: [
+      "User Research",
+      "iOS Design",
+      "Interaction Design",
+      "Design Systems",
+      "Usability Testing",
+      "Information Architecture",
+    ],
     overview:
-      "A complete reimagining of the mobile banking experience — from onboarding to daily spend tracking. The challenge was making financial data feel approachable and even beautiful for a generation of users who expect their apps to feel as polished as consumer products.",
+      "A ground-up redesign of a legacy iOS payroll and HR application used by thousands of hourly and salaried workers to manage timekeeping, pay, and benefits. The existing app hadn't been meaningfully updated in six years and was failing employees at the moments that mattered most — payday, benefits enrollment, and clocking in at job sites.",
     challenge:
-      "Users were abandoning the app during onboarding at a rate of 68%. Account visibility was buried three levels deep, and the visual hierarchy made it nearly impossible to understand financial health at a glance. Stakeholders had differing opinions on what the product should prioritise.",
+      "The legacy app carried a 2.1-star App Store rating and a growing backlog of support tickets. Time-entry errors were costing the company an estimated $1.2M annually in payroll corrections. 43% of employees abandoned benefits enrollment mid-flow and completed it over the phone instead — a costly, avoidable workaround. The app's information architecture predated modern iOS conventions, making routine tasks like locating a pay stub feel unnecessarily difficult.",
     process:
-      "We ran three rounds of moderated usability testing with 24 participants, mapped 12 distinct user journeys, and built a component library from scratch using an atomic design methodology. The redesign consolidated 140+ screens into 42 clearly structured views with consistent interaction patterns throughout.",
+      "I led three rounds of research with 18 employees spanning hourly field workers, salaried office staff, and HR administrators. A key early insight changed the entire clock-in flow: field workers were often checking in under real time pressure — standing outside in cold weather, wearing work gloves. The gesture had to work in two taps or fewer, with no login prompt. I mapped 8 core user journeys, consolidated 90+ screens into 34 clearly scoped views, and built a component library the engineering team could ship incrementally alongside the legacy system.",
     outcome:
-      "Onboarding drop-off reduced by 54%. Daily active usage increased 3.2×. The design system is now used across all three of the company's products, accelerating engineering delivery by an estimated 35%.",
+      "Time-entry errors dropped 67% in the first quarter after launch. Benefits enrollment completion rose from 57% to 89%. The App Store rating climbed from 2.1 to 4.6 stars within six months of release. HR support call volume fell 34%, saving an estimated $800K annually in overhead.",
+    prototypeGif: "/workforce-gif-2.gif",
   },
   {
     slug: "commerce-elevated",

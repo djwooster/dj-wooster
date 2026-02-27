@@ -6,6 +6,9 @@ import type { Variants } from "framer-motion";
 import type { Project } from "@/lib/projects";
 import { EASE } from "@/lib/motion";
 import UserFlowDiagram from "@/components/UserFlowDiagram";
+import WorkforceFlowDiagram from "@/components/WorkforceFlowDiagram";
+import ConstructionPersona from "@/components/ConstructionPersona";
+import WorkforceWireframes from "@/components/WorkforceWireframes";
 
 function PlaceholderImage({
   label,
@@ -86,7 +89,7 @@ export default function ProjectContent({ project }: { project: Project }) {
         viewport={{ once: true, margin: "-80px" }}
         className="px-6 md:px-12 py-20 border-b border-black/10"
       >
-        <h2 className="text-2xl font-bold tracking-[-.03em] uppercase text-black mb-3">
+        <h2 className="text-3xl font-bold tracking-[-.03em] uppercase text-black mb-3">
           The Challenge
         </h2>
         <p className="text-base md:text-lg leading-relaxed text-black/65 max-w-2xl mb-12">
@@ -96,7 +99,7 @@ export default function ProjectContent({ project }: { project: Project }) {
           {project.researchImage ? (
             <div className="w-full border border-black/10 bg-black/[0.02] p-6 md:p-10">
               <p className="text-[10px] tracking-[0.3em] uppercase text-black/25 mb-8">
-                Patient + Stakeholder Interviews
+                {project.researchImageLabel ?? "User Research"}
               </p>
               <Image
                 src={project.researchImage}
@@ -107,11 +110,15 @@ export default function ProjectContent({ project }: { project: Project }) {
                 className="w-full h-auto"
               />
             </div>
+          ) : project.slug === "workforce-mobile" ? (
+            <ConstructionPersona />
           ) : (
             <PlaceholderImage label="Research Photo" />
           )}
           {project.slug === "inbound-health" ? (
             <UserFlowDiagram />
+          ) : project.slug === "workforce-mobile" ? (
+            <WorkforceFlowDiagram />
           ) : (
             <PlaceholderImage label="Whiteboard Session" />
           )}
@@ -126,7 +133,7 @@ export default function ProjectContent({ project }: { project: Project }) {
         viewport={{ once: true, margin: "-80px" }}
         className="px-6 md:px-12 py-20 border-b border-black/10"
       >
-        <h2 className="text-2xl font-bold tracking-[-.03em] uppercase text-black mb-3">
+        <h2 className="text-3xl font-bold tracking-[-.03em] uppercase text-black mb-3">
           Process
         </h2>
         <p className="text-base md:text-lg leading-relaxed text-black/65 max-w-2xl mb-12">
@@ -134,32 +141,60 @@ export default function ProjectContent({ project }: { project: Project }) {
         </p>
 
         {/* Process image grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          {[
-            { src: project.processImage1, label: "Wireframes" },
-            { src: project.processImage2, label: "Prototype" },
-          ].map(({ src, label }) => (
-            <div key={label} className="w-full border border-black/10 bg-black/[0.02] p-6">
-              {src ? (
-                <Image
-                  src={src}
-                  alt={label}
-                  width={0}
-                  height={0}
-                  sizes="(max-width: 768px) 100vw, 33vw"
-                  className="w-full h-auto"
-                />
-              ) : (
-                <div className="flex items-center justify-center h-32">
-                  <span className="text-[10px] tracking-[0.3em] uppercase text-black/20">
-                    {label}
-                  </span>
-                </div>
-              )}
-            </div>
-          ))}
-        </div>
+        {project.slug === "workforce-mobile" ? (
+          <WorkforceWireframes />
+        ) : (
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            {[
+              { src: project.processImage1, label: "Wireframes" },
+              { src: project.processImage2, label: "Prototype" },
+            ].map(({ src, label }) => (
+              <div
+                key={label}
+                className="w-full border border-black/10 bg-black/2 p-6"
+              >
+                {src ? (
+                  <Image
+                    src={src}
+                    alt={label}
+                    width={0}
+                    height={0}
+                    sizes="(max-width: 768px) 100vw, 33vw"
+                    className="w-full h-auto"
+                  />
+                ) : (
+                  <div className="flex items-center justify-center h-32">
+                    <span className="text-[10px] tracking-[0.3em] uppercase text-black/20">
+                      {label}
+                    </span>
+                  </div>
+                )}
+              </div>
+            ))}
+          </div>
+        )}
       </motion.section>
+
+      {/* Prototype GIF */}
+      {project.prototypeGif && (
+        <motion.div
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.7 }}
+          className="px-6 md:px-12 py-16 border-b border-black/10 flex flex-col items-center"
+        >
+          <p className="text-[10px] tracking-[0.3em] uppercase text-black/25 mb-10 self-start">
+            Prototype
+          </p>
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src={project.prototypeGif}
+            alt="Prototype in action"
+            className="w-full max-w-[400px] h-auto block"
+          />
+        </motion.div>
+      )}
 
       {/* Final design images */}
       <motion.div
@@ -195,7 +230,7 @@ export default function ProjectContent({ project }: { project: Project }) {
         className="px-6 md:px-12 py-20"
       >
         <div className="grid md:grid-cols-[1fr_2fr] gap-8 md:gap-16">
-          <h2 className="text-base font-bold tracking-wide uppercase text-black pt-1">
+          <h2 className="text-3xl font-bold tracking-[-.03em] uppercase text-black pt-1">
             Outcome
           </h2>
           <div>
