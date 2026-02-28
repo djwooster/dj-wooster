@@ -51,7 +51,7 @@ export const projects: Project[] = [
     processImage2: "/nav-wireframe-2.png",
     finalImages: [
       "/video-visit-new.png",
-      "/vitals-details-new.png",
+      "/vitals-details-new2.png",
       "/calendar-new.png",
     ],
   },
