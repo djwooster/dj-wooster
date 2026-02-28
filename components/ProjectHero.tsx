@@ -1,9 +1,9 @@
-"use client"
+"use client";
 
-import { motion } from "framer-motion"
-import Link from "next/link"
-import type { Project } from "@/lib/projects"
-import { EASE } from "@/lib/motion"
+import { motion } from "framer-motion";
+import Link from "next/link";
+import type { Project } from "@/lib/projects";
+import { EASE } from "@/lib/motion";
 
 export default function ProjectHero({ project }: { project: Project }) {
   return (
@@ -52,7 +52,7 @@ export default function ProjectHero({ project }: { project: Project }) {
           initial={{ y: 120 }}
           animate={{ y: 0 }}
           transition={{ duration: 1, delay: 0.2, ease: EASE }}
-          className="text-[12vw] md:text-[9vw] font-black tracking-tight leading-[0.88]"
+          className="text-[12vw] md:text-[6vw] font-black tracking-tight leading-[0.88]"
         >
           {project.title}
         </motion.h1>
@@ -75,5 +75,5 @@ export default function ProjectHero({ project }: { project: Project }) {
         ))}
       </motion.div>
     </section>
-  )
+  );
 }

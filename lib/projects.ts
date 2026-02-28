@@ -23,7 +23,7 @@ export interface Project {
 export const projects: Project[] = [
   {
     slug: "inbound-health",
-    title: "Patient iPad Experience",
+    title: "Hospital at Home",
     category: "Mobile App · UX Research",
     year: "2024",
     client: "Inbound Health",
@@ -44,12 +44,16 @@ export const projects: Project[] = [
     outcome:
       "Forecasted to reduce unnecessary inpatient stays by 50 patients per month per hospital, saving $900K–$1.8M annually. Patient satisfaction maintained at 4/5 or better through continuous biometric tracking and streamlined clinician workflows.",
     thumbnail: "/ipad-image-1.jpg",
-    heroImage: "/mockup5.png",
+    heroImage: "/inbound-project-mockup-new.png",
     researchImage: "/research-1.png",
     researchImageLabel: "Patient + Stakeholder Interviews",
-    processImage1: "/wireframe-01.png",
-    processImage2: "/wireframe-2.png",
-    finalImages: ["/video-visit.png", "/details.png", "/calendar.png"],
+    processImage1: "/nav-wireframe-1.png",
+    processImage2: "/nav-wireframe-2.png",
+    finalImages: [
+      "/video-visit-new.png",
+      "/vitals-details-new.png",
+      "/calendar-new.png",
+    ],
   },
   {
     slug: "workforce-mobile",
