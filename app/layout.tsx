@@ -2,6 +2,7 @@ import type { Metadata } from "next"
 import { Geist } from "next/font/google"
 import "./globals.css"
 import Navigation from "@/components/Navigation"
+import ScrollRestorer from "@/components/ScrollRestorer"
 
 const geist = Geist({
   variable: "--font-geist-sans",
@@ -30,6 +31,7 @@ export default function RootLayout({
     <html lang="en">
       <body className={`${geist.variable} font-sans antialiased bg-white text-black`}>
         <Navigation />
+        <ScrollRestorer />
         {children}
       </body>
     </html>

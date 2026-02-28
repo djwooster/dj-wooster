@@ -110,7 +110,7 @@ export default function FeaturedProjects() {
                   {project.title}
                 </h3>
                 <p className="text-[15px] text-black/55 mt-1 tracking-wide">
-                  {project.category}&nbsp;·&nbsp;{project.year}
+                  {project.year}
                 </p>
               </div>
               {!project.comingSoon && (

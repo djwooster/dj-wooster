@@ -40,10 +40,6 @@ export default function ProjectHero({ project }: { project: Project }) {
         <span className="text-xs tracking-widest uppercase text-black/55">
           {project.client}
         </span>
-        <span className="text-black/20">·</span>
-        <span className="text-xs tracking-widest uppercase text-black/55">
-          {project.category}
-        </span>
       </motion.div>
 
       {/* Title */}

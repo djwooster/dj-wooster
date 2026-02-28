@@ -1,7 +1,6 @@
 export interface Project {
   slug: string;
   title: string;
-  category: string;
   year: string;
   client: string;
   tags: string[];
@@ -24,7 +23,6 @@ export const projects: Project[] = [
   {
     slug: "inbound-health",
     title: "Hospital at Home",
-    category: "Mobile App · UX Research",
     year: "2024",
     client: "Inbound Health",
     tags: [
@@ -58,7 +56,6 @@ export const projects: Project[] = [
   {
     slug: "workforce-mobile",
     title: "Workforce Mobile",
-    category: "iOS App · UX Research",
     year: "2026",
     client: "Enterprise HR Platform",
     tags: [
@@ -84,7 +81,6 @@ export const projects: Project[] = [
     slug: "commerce-elevated",
     title: "Redesigned Clinical Systems",
     comingSoon: true,
-    category: "UX Strategy",
     year: "2024",
     client: "Enterprise HR + Payroll Platform",
     tags: [
