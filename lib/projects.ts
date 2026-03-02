@@ -1,3 +1,20 @@
+export interface ProjectAct {
+  number: string;
+  name: string;
+  surface: string;
+  outcome: string;
+  decision: string;
+  researchInsights?: string[];
+  images?: string[];
+}
+
+export interface ProjectContext {
+  role: string;
+  timeline: string;
+  team: string;
+  scope: string;
+}
+
 export interface Project {
   slug: string;
   title: string;
@@ -18,6 +35,10 @@ export interface Project {
   processImage2?: string;
   finalImages?: string[];
   comingSoon?: boolean;
+  acts?: ProjectAct[];
+  systemsNote?: string;
+  context?: ProjectContext;
+  problem?: string;
 }
 
 export const projects: Project[] = [
@@ -34,26 +55,60 @@ export const projects: Project[] = [
       "Information Architecture",
       "Usability Testing",
     ],
-    tldr: "Inbound Health needed a care coordination platform that worked for three radically different user groups: care managers, patients, and operations staff. As founding designer, I built the UX framework, design system, and shipped experiences from scratch — reducing time-to-action by 40% and increasing cross-role decision confidence across the platform.",
+    tldr: "Inbound Health needed a care coordination platform that worked for three radically different user groups: care liaisons, biometric nurses, and patients. As founding designer, I built the UX framework, design system, and shipped three product surfaces from scratch — reducing liaison triage time by 40% and maintaining patient satisfaction at 4/5 or better through the full care episode.",
     overview:
-      "A hospital-at-home platform empowering patients to track biometric readings and stay connected to their care team through recovery. Designed for users with little to no prior tech experience — simple enough to use under stress, without any in-person guidance.",
+      "Founding Product Designer on a greenfield care coordination platform. Three user groups, three product surfaces — a Salesforce liaison app, a Salesforce nurse dashboard, and a custom iOS patient app — built from scratch with no prior design system or patterns to reference.",
+    context: {
+      role: "Founding Product Designer",
+      timeline: "Feb 2023 – Jan 2026",
+      team: "2 PMs · 1 eng lead · 3 frontend engineers",
+      scope: "All three product surfaces · Design system · Research & testing",
+    },
+    problem:
+      "Three user groups with completely different mental models, workflows, and technical literacy — and a greenfield platform with nothing built yet. Care liaisons were manually reviewing hundreds of ineligible patients with no way to filter or prioritize. Biometric nurses were rebuilding repetitive documentation from scratch each shift. Patients with little to no tech experience were being asked to manage their own clinical data. No design system, no established patterns, no prior designer.",
     challenge:
       "Hospital systems needed to expand capacity without compromising care quality. Patients managing recovery at home were anxious about unfamiliar technology, and the interface had to work correctly for the least tech-savvy user in the room, every time.",
     process:
       "I conducted 14 interviews across clinical staff and patients across four iterative phases — from early market validation through MVP. Each test round directly changed the design: bottom navigation was replaced after 3 of 4 users failed key tasks, and all 8 usability participants preferred a data table over charts for viewing biometric history.",
     outcome:
-      "Forecasted to reduce unnecessary inpatient stays by 50 patients per month per hospital, saving $900K–$1.8M annually. Patient satisfaction maintained at 4/5 or better through continuous biometric tracking and streamlined clinician workflows.",
+      "Forecasted to reduce unnecessary inpatient stays by 50 patients per month per hospital, saving $900K–$1.8M annually. Patient satisfaction held at 4/5 or better throughout the care episode. Engineering reported significantly fewer handoff gaps after the design system launched — sprint reviews shifted from design debates to acceptance criteria check-ins.",
     thumbnail: "/ipad-image-1.jpg",
     heroImage: "/inbound-project-mockup-new.png",
-    researchImage: "/research-1.png",
-    researchImageLabel: "Patient + Stakeholder Interviews",
-    processImage1: "/nav-wireframe-1.png",
-    processImage2: "/nav-wireframe-2.png",
-    finalImages: [
-      "/video-visit-new.png",
-      "/vitals-details-new2.png",
-      "/calendar-new.png",
+    acts: [
+      {
+        number: "01",
+        name: "Liaison",
+        surface: "Salesforce App · Care Liaison",
+        outcome: "40% reduction in triage time.",
+        decision:
+          "I went field-level into Epic EMR data to identify which patient signals actually predicted program fit. That validation shaped both the AI/ML pre-filtering inputs — removing hard disqualifications before liaisons ever saw a list — and the UI's prioritization order, so liaisons worked highest-fit patients first.",
+        researchInsights: [
+          "EMR field validation revealed which patient signals actually predicted program fit — directly shaping the AI/ML filtering inputs and the triage UI hierarchy.",
+          "Liaisons were spending most of their time on patients who would never qualify — the biggest UX gain was upstream filtering, not interface polish.",
+          "Patient enrollment drop-off traced to distrust and unclear value, not clinical hesitation — which reframed the entire iOS onboarding design problem.",
+        ],
+        images: ["/research-1.png"],
+      },
+      {
+        number: "02",
+        name: "Biometric Nurse",
+        surface: "Salesforce Dashboard · Biometric Nurse",
+        outcome: "Less time on paperwork. More time on patients.",
+        decision:
+          "Salesforce is not a blank canvas — every interaction and layout had to work within its component system. I designed reusable care plan templates that reduced repetitive documentation within that constraint, shifting nurse time from logistics to care.",
+      },
+      {
+        number: "03",
+        name: "Patient",
+        surface: "Custom iOS App · Patient",
+        outcome: "Patient satisfaction held at 4/5 or better through the full care episode.",
+        decision:
+          "Eligible patients were declining to enroll — not from clinical hesitation, but because they didn't trust the product or understand its value. I redesigned onboarding around that trust gap, addressing the specific barriers causing drop-off before a single vital was ever submitted.",
+        images: ["/video-visit-new.png", "/vitals-details-new2.png"],
+      },
     ],
+    systemsNote:
+      "I built a design system from scratch across all three surfaces — two Salesforce apps with their own UI constraints, and a fully custom iOS app. Maintaining coherence across environments that different, with no prior system to reference, is the senior-level challenge worth naming.",
   },
   {
     slug: "workforce-mobile",
