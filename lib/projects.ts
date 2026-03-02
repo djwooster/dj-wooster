@@ -4,6 +4,7 @@ export interface Project {
   year: string;
   client: string;
   tags: string[];
+  tldr?: string;
   overview: string;
   challenge: string;
   process: string;
@@ -33,6 +34,7 @@ export const projects: Project[] = [
       "Information Architecture",
       "Usability Testing",
     ],
+    tldr: "Inbound Health needed a care coordination platform that worked for three radically different user groups: care managers, patients, and operations staff. As founding designer, I built the UX framework, design system, and shipped experiences from scratch — reducing time-to-action by 40% and increasing cross-role decision confidence across the platform.",
     overview:
       "A hospital-at-home platform empowering patients to track biometric readings and stay connected to their care team through recovery. Designed for users with little to no prior tech experience — simple enough to use under stress, without any in-person guidance.",
     challenge:
@@ -66,6 +68,7 @@ export const projects: Project[] = [
       "Usability Testing",
       "Information Architecture",
     ],
+    tldr: "A legacy workforce app carrying a 2.1-star rating was failing employees at every critical moment — payday, benefits enrollment, and clocking in. I led a ground-up redesign anchored in field research with hourly workers, salaried staff, and HR admins, consolidating 90+ screens into 34 focused views. Time-entry errors dropped 67%, benefits enrollment rose from 57% to 89%, and the App Store rating climbed from 2.1 to 4.6 stars within six months.",
     overview:
       "A ground-up redesign of a legacy iOS payroll and HR application used by thousands of hourly and salaried workers to manage timekeeping, pay, and benefits. The existing app hadn't been meaningfully updated in six years and was failing employees at the moments that mattered most — payday, benefits enrollment, and clocking in at job sites.",
     challenge:

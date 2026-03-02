@@ -17,7 +17,7 @@ export default function ProjectHero({ project }: { project: Project }) {
       >
         <Link
           href="/#work"
-          className="inline-flex items-center gap-2 text-xs tracking-widest uppercase text-black/55 hover:text-black transition-colors group"
+          className="inline-flex items-center gap-2 text-sm font-medium tracking-widest uppercase text-black/55 hover:text-black transition-colors group"
         >
           <span className="group-hover:-translate-x-1 transition-transform duration-200">
             ←
@@ -33,11 +33,11 @@ export default function ProjectHero({ project }: { project: Project }) {
         transition={{ duration: 0.6, delay: 0.15, ease: EASE }}
         className="flex flex-wrap items-center gap-4 mb-8"
       >
-        <span className="text-xs tracking-widest uppercase text-black/55">
+        <span className="text-sm tracking-widest uppercase text-black/55">
           {project.year}
         </span>
         <span className="text-black/20">·</span>
-        <span className="text-xs tracking-widest uppercase text-black/55">
+        <span className="text-sm tracking-widest uppercase text-black/55">
           {project.client}
         </span>
       </motion.div>
@@ -64,12 +64,35 @@ export default function ProjectHero({ project }: { project: Project }) {
         {project.tags.map((tag) => (
           <span
             key={tag}
-            className="px-4 py-1.5 border border-black/25 text-[10px] tracking-widest uppercase text-black/70"
+            className="px-4 py-1.5 border border-black/25 text-xs font-medium tracking-widest uppercase text-black/70"
           >
             {tag}
           </span>
         ))}
       </motion.div>
+
+      {/* TL;DR */}
+      {project.tldr && (
+        <motion.div
+          initial={{ opacity: 0, y: 12 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.75, ease: EASE }}
+          className="relative mt-8 px-12 py-7 bg-black/[0.02]"
+        >
+          {/* Corner brackets */}
+          <div className="absolute top-0 left-0 w-8 h-8 border-t-2 border-l-2 border-black/50" />
+          <div className="absolute top-0 right-0 w-8 h-8 border-t-2 border-r-2 border-black/50" />
+          <div className="absolute bottom-0 left-0 w-8 h-8 border-b-2 border-l-2 border-black/50" />
+          <div className="absolute bottom-0 right-0 w-8 h-8 border-b-2 border-r-2 border-black/50" />
+
+          <p className="text-xs tracking-[0.25em] uppercase text-black/40 mb-4 font-medium">
+            TL;DR
+          </p>
+          <p className="text-base md:text-lg leading-relaxed text-black/75 max-w-3xl">
+            {project.tldr}
+          </p>
+        </motion.div>
+      )}
     </section>
   );
 }

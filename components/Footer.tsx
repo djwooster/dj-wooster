@@ -22,7 +22,7 @@ export default function Footer() {
         </h2>
         <a
           href="mailto:contact@djwooster.com"
-          className="inline-flex items-center gap-3 mt-10 text-xs tracking-widest uppercase group"
+          className="inline-flex items-center gap-3 mt-10 text-sm tracking-widest uppercase group"
         >
           <span className="border-b border-black pb-0.5 group-hover:pr-4 transition-all duration-300">
             contact@djwooster.com
@@ -35,7 +35,7 @@ export default function Footer() {
 
       {/* Bottom bar */}
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-6 pt-8 border-t border-black/10">
-        <p className="text-xs tracking-widest uppercase text-black/30">
+        <p className="text-sm tracking-widest uppercase text-black/30">
           © 2025 DJ Wooster
         </p>
 
@@ -48,7 +48,7 @@ export default function Footer() {
             <Link
               key={link.label}
               href={link.href}
-              className="text-xs tracking-widest uppercase text-black/40 hover:text-black transition-colors duration-200"
+              className="text-sm tracking-widest uppercase text-black/40 hover:text-black transition-colors duration-200"
             >
               {link.label}
             </Link>
@@ -68,7 +68,7 @@ export default function Footer() {
             <a
               key={link.label}
               href={link.href}
-              className="text-xs tracking-widest uppercase text-black/40 hover:text-black transition-colors duration-200"
+              className="text-sm tracking-widest uppercase text-black/40 hover:text-black transition-colors duration-200"
             >
               {link.label}
             </a>

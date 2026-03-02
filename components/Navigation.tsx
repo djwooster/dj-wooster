@@ -50,7 +50,7 @@ export default function Navigation() {
               key={link.label}
               href={link.href}
               onClick={(e) => scrollToSection(e, link.href)}
-              className="text-xs tracking-widest uppercase hover:opacity-40 transition-opacity duration-200"
+              className="text-sm tracking-widest uppercase hover:opacity-40 transition-opacity duration-200"
             >
               {link.label}
             </Link>
