@@ -45,7 +45,7 @@ export const projects: Project[] = [
   {
     slug: "inbound-health",
     title: "Hospital at Home",
-    year: "2024",
+    year: "2023–2026",
     client: "Inbound Health",
     tags: [
       "User Research",
@@ -138,8 +138,21 @@ export const projects: Project[] = [
       "I led three rounds of research with 18 employees spanning hourly field workers, salaried office staff, and HR administrators. A key early insight changed the entire clock-in flow: field workers were often checking in under real time pressure — standing outside in cold weather, wearing work gloves. The gesture had to work in two taps or fewer, with no login prompt. I mapped 8 core user journeys, consolidated 90+ screens into 34 clearly scoped views, and built a component library the engineering team could ship incrementally alongside the legacy system.",
     outcome:
       "Time-entry errors dropped 67% in the first quarter after launch. Benefits enrollment completion rose from 57% to 89%. The App Store rating climbed from 2.1 to 4.6 stars within six months of release. HR support call volume fell 34%, saving an estimated $800K annually in overhead.",
+    comingSoon: true,
     thumbnail: "/workforce-thumbnail.jpg",
     prototypeGif: "/workforce-gif-2.gif",
+  },
+  {
+    slug: "national-grid",
+    title: "National Grid",
+    year: "2025",
+    client: "National Grid",
+    comingSoon: true,
+    tags: [],
+    overview: "",
+    challenge: "",
+    process: "",
+    outcome: "",
   },
   {
     slug: "commerce-elevated",
