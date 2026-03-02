@@ -101,14 +101,20 @@ export const projects: Project[] = [
         number: "03",
         name: "Patient",
         surface: "Custom iOS App · Patient",
-        outcome: "Patient satisfaction held at 4/5 or better through the full care episode.",
+        outcome:
+          "Patient satisfaction held at 4/5 or better through the full care episode.",
         decision:
           "Eligible patients were declining to enroll — not from clinical hesitation, but because they didn't trust the product or understand its value. I redesigned onboarding around that trust gap, addressing the specific barriers causing drop-off before a single vital was ever submitted.",
-        images: ["/video-visit-new.png", "/vitals-details-new2.png"],
+        images: [
+          "/video-visit-new.png",
+          "/vitals-details-new2.png",
+          "/calendar-new.png",
+          "/inbound-project-mockup-new.png",
+        ],
       },
     ],
     systemsNote:
-      "I built a design system from scratch across all three surfaces — two Salesforce apps with their own UI constraints, and a fully custom iOS app. Maintaining coherence across environments that different, with no prior system to reference, is the senior-level challenge worth naming.",
+      "I built a design system from scratch across all three surfaces — two Salesforce apps with their own UI constraints, and a fully custom iOS app. Maintaining coherence across environments that different, with no prior system to reference, was the challenge worth pursuing.",
   },
   {
     slug: "workforce-mobile",
