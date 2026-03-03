@@ -15,6 +15,7 @@ export interface ProjectAct {
   iterations?: ActIteration[];
   solutionText?: string;
   images?: string[];
+  imagesReversed?: boolean;
 }
 
 export interface ProjectContext {
@@ -222,6 +223,7 @@ export const projects: Project[] = [
             imageLabel: "Care Episode Wireframe",
           },
         ],
+        imagesReversed: true,
         solutionText:
           "Testing made the path forward clear: patients needed familiar navigation, focused tasks, and a persistent sense of their care team's presence. The final design replaced the bottom nav with a persistent left rail, stripped the home screen back to only what mattered that day, and put the nurse connection one tap away at all times.",
         images: [

@@ -54,9 +54,9 @@ function BusinessGoalsSection({ goals }: { goals: BusinessGoal[] }) {
       viewport={{ once: true, margin: "-80px" }}
       className="px-6 md:px-12 py-20 border-b border-black/10"
     >
-      <p className="text-xs tracking-[0.3em] uppercase text-black/35 mb-10">
+      <h2 className="text-2xl md:text-3xl font-black tracking-tight text-black mb-10">
         Business Goals
-      </p>
+      </h2>
       <div className="divide-y divide-black/[0.06]">
         {goals.map((goal) => (
           <div
@@ -88,9 +88,9 @@ function ProcessPhasesSection({ phases }: { phases: ProcessPhase[] }) {
       viewport={{ once: true, margin: "-80px" }}
       className="px-6 md:px-12 py-20 border-b border-black/10"
     >
-      <p className="text-xs tracking-[0.3em] uppercase text-black/35 mb-10">
+      <h2 className="text-2xl md:text-3xl font-black tracking-tight text-black mb-10">
         Process
-      </p>
+      </h2>
       <div className="grid grid-cols-1 md:grid-cols-4 gap-px bg-black/[0.06]">
         {phases.map((phase) => (
           <div
@@ -134,9 +134,9 @@ function ResearchQuoteSection({ data }: { data: ResearchQuote }) {
       viewport={{ once: true, margin: "-80px" }}
       className="px-6 md:px-12 py-20 border-b border-black/10"
     >
-      <p className="text-xs tracking-[0.3em] uppercase text-black/35 mb-10">
+      <h2 className="text-2xl md:text-3xl font-black tracking-tight text-black mb-10">
         What We Heard
-      </p>
+      </h2>
       <blockquote className="text-xl md:text-2xl font-light leading-relaxed text-black/80 max-w-3xl mb-3 border-l-2 border-black/20 pl-8">
         &ldquo;{data.quote}&rdquo;
       </blockquote>
@@ -172,18 +172,13 @@ function ActSection({ act }: { act: ProjectAct }) {
       className="px-6 md:px-12 py-20 border-b border-black/10"
     >
       {/* Act header */}
-      <div className="flex items-start justify-between mb-14">
-        <div>
-          <p className="text-xs tracking-[0.3em] uppercase text-black/35 mb-2">
-            Act {act.number}
-          </p>
-          <h2 className="text-4xl md:text-5xl font-black tracking-tight leading-none">
-            {act.name}
-          </h2>
-        </div>
-        <p className="text-xs tracking-widest uppercase text-black/35 text-right hidden md:block">
-          {act.surface}
+      <div className="mb-14">
+        <p className="text-xs tracking-[0.3em] uppercase text-black/35 mb-2">
+          Act {act.number} · {act.surface.split("·")[0].trim()}
         </p>
+        <h2 className="text-4xl md:text-5xl font-black tracking-tight leading-none">
+          {act.name}
+        </h2>
       </div>
 
       {/* Outcome — the skimmable hook */}
@@ -199,9 +194,9 @@ function ActSection({ act }: { act: ProjectAct }) {
       {/* Research insights */}
       {act.researchInsights && (
         <div className="mb-14 border-t border-black/10 pt-10">
-          <p className="text-xs tracking-[0.3em] uppercase text-black/35 mb-6">
+          <h3 className="text-2xl md:text-3xl font-black tracking-tight text-black mb-6">
             Key Insights
-          </p>
+          </h3>
           <ul className="space-y-5 max-w-2xl">
             {act.researchInsights.map((insight, i) => (
               <li key={i} className="flex gap-5">
@@ -270,20 +265,20 @@ function ActSection({ act }: { act: ProjectAct }) {
 
       {/* Images */}
       {act.images && act.images.length > 0 ? (
-        <div
-          className={`grid gap-4 ${act.images.length > 1 ? "grid-cols-1 md:grid-cols-2" : ""}`}
-        >
-          {act.images.map((src, i) => (
-            <Image
-              key={i}
-              src={src}
-              alt={`${act.name} interface`}
-              width={0}
-              height={0}
-              sizes="(max-width: 768px) 100vw, 50vw"
-              className="w-full h-auto"
-            />
-          ))}
+        <div className="flex flex-col gap-8">
+          {(act.imagesReversed ? [...act.images].reverse() : act.images).map(
+            (src, i) => (
+              <Image
+                key={i}
+                src={src}
+                alt={`${act.name} interface`}
+                width={0}
+                height={0}
+                sizes="(max-width: 768px) 100vw, 60vw"
+                className="w-[75vw] h-auto mx-auto block"
+              />
+            )
+          )}
         </div>
       ) : (
         <PlaceholderImage label={`${act.name} — Interface`} />
@@ -400,9 +395,9 @@ export default function ProjectContent({ project }: { project: Project }) {
               viewport={{ once: true, margin: "-80px" }}
               className="px-6 md:px-12 py-20 border-b border-black/10"
             >
-              <p className="text-xs tracking-[0.3em] uppercase text-black/35 mb-6">
+              <h2 className="text-2xl md:text-3xl font-black tracking-tight text-black mb-6">
                 Design System
-              </p>
+              </h2>
               <p className="text-base md:text-lg text-black/65 leading-relaxed max-w-2xl">
                 {project.systemsNote}
               </p>
@@ -417,21 +412,12 @@ export default function ProjectContent({ project }: { project: Project }) {
             viewport={{ once: true, margin: "-80px" }}
             className="px-6 md:px-12 py-20"
           >
-            <div className="grid md:grid-cols-[1fr_2fr] gap-8 md:gap-16">
-              <h2 className="text-3xl font-bold tracking-[-.03em] uppercase text-black pt-1">
-                Outcome
-              </h2>
-              <div>
-                <p className="text-base md:text-lg leading-relaxed text-black/65 mb-12">
-                  {project.outcome}
-                </p>
-                <div className="pt-8 border-t border-black/10">
-                  <p className="text-sm tracking-widest uppercase text-black/30 mb-2">
-                    Next Project
-                  </p>
-                </div>
-              </div>
-            </div>
+            <h2 className="text-2xl md:text-3xl font-black tracking-tight text-black mb-6">
+              Outcome
+            </h2>
+            <p className="text-base md:text-lg leading-relaxed text-black/65 max-w-2xl">
+              {project.outcome}
+            </p>
           </motion.section>
         </>
       ) : (
