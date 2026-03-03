@@ -34,6 +34,8 @@ export interface Project {
   processImage1?: string;
   processImage2?: string;
   finalImages?: string[];
+  processImage1Label?: string;
+  processImage2Label?: string;
   comingSoon?: boolean;
   acts?: ProjectAct[];
   systemsNote?: string;
@@ -155,24 +157,36 @@ export const projects: Project[] = [
     outcome: "",
   },
   {
-    slug: "commerce-elevated",
-    title: "Redesigned Clinical Systems",
-    comingSoon: true,
-    year: "2024",
-    client: "Enterprise HR + Payroll Platform",
+    slug: "msk-portal",
+    title: "Oncology Portal Redesign",
+    year: "2022–2023",
+    client: "Memorial Sloan Kettering",
     tags: [
-      "UX Strategy",
+      "UX Audit",
+      "Design Systems",
       "Information Architecture",
-      "Visual Design",
-      "A/B Testing",
+      "Interaction Design",
+      "Enterprise UX",
     ],
+    tldr: "MSK's legacy oncology portal had no shared view of where the problems were. I ran a three-method audit to align the team on priorities, redesigned key flows using the org design system, and co-led the migration from legacy UI — resulting in a 30% improvement in patient consent flow completion time.",
+    context: {
+      role: "Senior Product Designer",
+      timeline: "Feb 2022 – Jan 2023",
+      team: "Product · Engineering · Clinical stakeholders",
+      scope: "Portal audit · Key flow redesign · Design system migration",
+    },
     overview:
-      "A luxury retail brand with world-class products was trapped in an outdated digital experience that failed to reflect the quality of what they sell. We redesigned the full purchase journey — from discovery through to post-purchase — to earn and sustain customer trust.",
+      "A legacy oncology portal serving patients, clinicians, and administrative staff — each with different workflows, different mental models, and no shared baseline for what needed fixing. I ran a comprehensive audit, redesigned key flows against the MSK design system, and co-led the migration from legacy UI.",
     challenge:
-      "Cart abandonment sat at 79%. The site had grown organically over eight years with no cohesive design language, resulting in contradictory UI patterns and broken trust signals at precisely the moments when customers needed confidence most.",
+      "Before I opened Figma, I needed the team to agree on what was actually broken. The portal served mixed user types with completely different workflows — and competing opinions about where to start. The audit created a shared, evidence-based backlog where there had only been assumptions.",
     process:
-      "Starting with competitive benchmarking and 24 in-depth customer interviews, we rebuilt the information architecture from the ground up. A full visual identity audit informed a new design language — restrained, confident, and unmistakably premium — before a single pixel was placed.",
+      "I ran a three-method audit: a heuristic evaluation produced a severity-ranked issue list; a component inventory exposed UI drift and legacy patterns the design system had never absorbed; and a task flow analysis mapped where each user type was hitting friction. From there I redesigned key flows using the MSK design system and co-led the migration plan — defining the transition path, not just delivering the destination.",
     outcome:
-      "Conversion rate increased by 41%. Average order value grew 28%. Bounce rate on product pages dropped from 62% to 31%, and the brand now ranks in the top three in its category for digital experience benchmarks.",
+      "30% improvement in task completion time for patients navigating the electronic consent flow on arrival. The audit and migration work left the team with a durable foundation — not a one-off redesign requiring another full pass in 18 months.",
+    processImage1: "/msk-original-1.png",
+    processImage1Label: "Legacy UI",
+    processImage2: "/improves-msk-1.png",
+    processImage2Label: "Redesigned",
+    finalImages: ["/form-select-msk.png", "/signature-msk.png"],
   },
 ];

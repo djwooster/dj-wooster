@@ -9,6 +9,7 @@ import UserFlowDiagram from "@/components/UserFlowDiagram";
 import WorkforceFlowDiagram from "@/components/WorkforceFlowDiagram";
 import ConstructionPersona from "@/components/ConstructionPersona";
 import WorkforceWireframes from "@/components/WorkforceWireframes";
+import HeuristicEvaluation from "@/components/HeuristicEvaluation";
 
 function PlaceholderImage({
   label,
@@ -286,6 +287,35 @@ export default function ProjectContent({ project }: { project: Project }) {
             )}
           </motion.div>
 
+          {/* Context */}
+          {project.context && (
+            <motion.section
+              variants={sectionVariants}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, margin: "-80px" }}
+              className="px-6 md:px-12 py-14 border-b border-black/10"
+            >
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+                {(
+                  [
+                    { label: "Role", value: project.context.role },
+                    { label: "Timeline", value: project.context.timeline },
+                    { label: "Team", value: project.context.team },
+                    { label: "Scope", value: project.context.scope },
+                  ] as { label: string; value: string }[]
+                ).map(({ label, value }) => (
+                  <div key={label}>
+                    <p className="text-xs tracking-[0.3em] uppercase text-black/35 mb-2">
+                      {label}
+                    </p>
+                    <p className="text-sm text-black/70 leading-relaxed">{value}</p>
+                  </div>
+                ))}
+              </div>
+            </motion.section>
+          )}
+
           {/* Challenge */}
           <motion.section
             variants={sectionVariants}
@@ -300,32 +330,36 @@ export default function ProjectContent({ project }: { project: Project }) {
             <p className="text-base md:text-lg leading-relaxed text-black/65 max-w-2xl mb-12">
               {project.challenge}
             </p>
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-              {project.researchImage ? (
-                <div className="w-full border border-black/10 bg-black/[0.02] p-6 md:p-10">
-                  <p className="text-xs font-medium tracking-[0.3em] uppercase text-black/50 mb-8">
-                    {project.researchImageLabel ?? "User Research"}
-                  </p>
-                  <Image
-                    src={project.researchImage}
-                    alt="Research"
-                    width={0}
-                    height={0}
-                    sizes="(max-width: 640px) 100vw, 50vw"
-                    className="w-full h-auto"
-                  />
-                </div>
-              ) : project.slug === "workforce-mobile" ? (
-                <ConstructionPersona />
-              ) : (
-                <PlaceholderImage label="Research Photo" />
-              )}
-              {project.slug === "workforce-mobile" ? (
-                <WorkforceFlowDiagram />
-              ) : (
-                <PlaceholderImage label="Whiteboard Session" />
-              )}
-            </div>
+            {project.slug === "msk-portal" ? (
+              <HeuristicEvaluation />
+            ) : (
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                {project.researchImage ? (
+                  <div className="w-full border border-black/10 bg-black/[0.02] p-6 md:p-10">
+                    <p className="text-xs font-medium tracking-[0.3em] uppercase text-black/50 mb-8">
+                      {project.researchImageLabel ?? "User Research"}
+                    </p>
+                    <Image
+                      src={project.researchImage}
+                      alt="Research"
+                      width={0}
+                      height={0}
+                      sizes="(max-width: 640px) 100vw, 50vw"
+                      className="w-full h-auto"
+                    />
+                  </div>
+                ) : project.slug === "workforce-mobile" ? (
+                  <ConstructionPersona />
+                ) : (
+                  <PlaceholderImage label="Research Photo" />
+                )}
+                {project.slug === "workforce-mobile" ? (
+                  <WorkforceFlowDiagram />
+                ) : (
+                  <PlaceholderImage label="Whiteboard Session" />
+                )}
+              </div>
+            )}
           </motion.section>
 
           {/* Process */}
@@ -348,8 +382,8 @@ export default function ProjectContent({ project }: { project: Project }) {
             ) : (
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 {[
-                  { src: project.processImage1, label: "Wireframes" },
-                  { src: project.processImage2, label: "Prototype" },
+                  { src: project.processImage1, label: project.processImage1Label ?? "Wireframes" },
+                  { src: project.processImage2, label: project.processImage2Label ?? "Prototype" },
                 ].map(({ src, label }) => (
                   <div
                     key={label}
