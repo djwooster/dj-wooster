@@ -441,14 +441,14 @@ export default function ProjectContent({ project }: { project: Project }) {
           </motion.section>
 
           {/* Hero image */}
-          <motion.div
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.7 }}
-            className="px-6 md:px-12 py-8 border-b border-black/10"
-          >
-            {project.heroImage ? (
+          {project.heroImage && (
+            <motion.div
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.7 }}
+              className="px-6 md:px-12 py-8 border-b border-black/10"
+            >
               <Image
                 src={project.heroImage}
                 alt={project.title}
@@ -458,10 +458,8 @@ export default function ProjectContent({ project }: { project: Project }) {
                 className="w-[75vw] h-auto mx-auto block"
                 priority
               />
-            ) : (
-              <PlaceholderImage label="Hero Image — Full Width" tall />
-            )}
-          </motion.div>
+            </motion.div>
+          )}
 
           {/* Context */}
           {project.context && (
