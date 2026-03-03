@@ -3,7 +3,14 @@
 import Image from "next/image";
 import { motion } from "framer-motion";
 import type { Variants } from "framer-motion";
-import type { Project, ProjectAct, ProjectContext } from "@/lib/projects";
+import type {
+  Project,
+  ProjectAct,
+  ActIteration,
+  BusinessGoal,
+  ProcessPhase,
+  ResearchQuote,
+} from "@/lib/projects";
 import { EASE } from "@/lib/motion";
 import UserFlowDiagram from "@/components/UserFlowDiagram";
 import WorkforceFlowDiagram from "@/components/WorkforceFlowDiagram";
@@ -37,6 +44,123 @@ const sectionVariants: Variants = {
     transition: { duration: 0.8, ease: EASE },
   },
 };
+
+function BusinessGoalsSection({ goals }: { goals: BusinessGoal[] }) {
+  return (
+    <motion.section
+      variants={sectionVariants}
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: true, margin: "-80px" }}
+      className="px-6 md:px-12 py-20 border-b border-black/10"
+    >
+      <p className="text-xs tracking-[0.3em] uppercase text-black/35 mb-10">
+        Business Goals
+      </p>
+      <div className="divide-y divide-black/[0.06]">
+        {goals.map((goal) => (
+          <div
+            key={goal.number}
+            className="grid md:grid-cols-[40px_1fr_2fr] gap-6 md:gap-10 py-8 items-start"
+          >
+            <span className="text-[10px] font-mono text-black/25 pt-[2px]">
+              {goal.number}
+            </span>
+            <h3 className="text-sm font-bold tracking-[0.15em] uppercase text-black/80 leading-snug">
+              {goal.title}
+            </h3>
+            <p className="text-sm md:text-base text-black/55 leading-relaxed">
+              {goal.description}
+            </p>
+          </div>
+        ))}
+      </div>
+    </motion.section>
+  );
+}
+
+function ProcessPhasesSection({ phases }: { phases: ProcessPhase[] }) {
+  return (
+    <motion.section
+      variants={sectionVariants}
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: true, margin: "-80px" }}
+      className="px-6 md:px-12 py-20 border-b border-black/10"
+    >
+      <p className="text-xs tracking-[0.3em] uppercase text-black/35 mb-10">
+        Process
+      </p>
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-px bg-black/[0.06]">
+        {phases.map((phase) => (
+          <div
+            key={phase.number}
+            className="bg-white p-8 flex flex-col gap-6"
+          >
+            <span className="text-[10px] font-mono text-black/25">
+              {phase.number}
+            </span>
+            <div>
+              <h3 className="text-sm font-black tracking-[0.1em] uppercase text-black mb-3">
+                {phase.name}
+              </h3>
+              <p className="text-[11px] text-black/40 leading-relaxed italic">
+                {phase.question}
+              </p>
+            </div>
+            <ul className="space-y-2 mt-auto pt-2 border-t border-black/[0.06]">
+              {phase.methods.map((method) => (
+                <li key={method} className="flex items-center gap-2.5">
+                  <div className="w-1 h-1 bg-black/25 shrink-0" />
+                  <span className="text-[11px] tracking-widest uppercase text-black/50">
+                    {method}
+                  </span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        ))}
+      </div>
+    </motion.section>
+  );
+}
+
+function ResearchQuoteSection({ data }: { data: ResearchQuote }) {
+  return (
+    <motion.section
+      variants={sectionVariants}
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: true, margin: "-80px" }}
+      className="px-6 md:px-12 py-20 border-b border-black/10"
+    >
+      <p className="text-xs tracking-[0.3em] uppercase text-black/35 mb-10">
+        What We Heard
+      </p>
+      <blockquote className="text-xl md:text-2xl font-light leading-relaxed text-black/80 max-w-3xl mb-3 border-l-2 border-black/20 pl-8">
+        &ldquo;{data.quote}&rdquo;
+      </blockquote>
+      <p className="text-xs tracking-widest uppercase text-black/35 pl-8 mb-14">
+        — {data.author}
+      </p>
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+        {data.insights.map((insight, i) => (
+          <div
+            key={i}
+            className="border border-black/10 bg-black/[0.02] p-8"
+          >
+            <h3 className="text-sm font-bold tracking-[0.15em] uppercase text-black/80 mb-4">
+              {insight.title}
+            </h3>
+            <p className="text-sm text-black/55 leading-relaxed">
+              {insight.description}
+            </p>
+          </div>
+        ))}
+      </div>
+    </motion.section>
+  );
+}
 
 function ActSection({ act }: { act: ProjectAct }) {
   return (
@@ -90,6 +214,57 @@ function ActSection({ act }: { act: ProjectAct }) {
               </li>
             ))}
           </ul>
+        </div>
+      )}
+
+      {/* Design iterations */}
+      {act.iterations && (
+        <div className="mb-14 border-t border-black/10 pt-10">
+          <p className="text-xs tracking-[0.3em] uppercase text-black/35 mb-8">
+            What We Tested
+          </p>
+          <div className="space-y-16">
+            {act.iterations.map((iteration: ActIteration) => (
+              <div key={iteration.title} className="bg-white">
+                <div className="py-8 pb-6">
+                  <h3 className="text-2xl md:text-3xl font-black tracking-tight text-black mb-3">
+                    {iteration.title}
+                  </h3>
+                  <p className="text-base md:text-lg text-black/65 leading-relaxed max-w-2xl">
+                    {iteration.description}
+                  </p>
+                </div>
+                {iteration.image ? (
+                  <Image
+                    src={iteration.image}
+                    alt={iteration.imageLabel ?? iteration.title}
+                    width={0}
+                    height={0}
+                    sizes="60vw"
+                    className="w-[60%] h-auto"
+                  />
+                ) : (
+                  <div className="mx-8 mb-8 bg-black/[0.04] flex items-center justify-center h-48">
+                    <span className="text-[10px] tracking-[0.3em] uppercase text-black/20">
+                      {iteration.imageLabel ?? "Wireframe"}
+                    </span>
+                  </div>
+                )}
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
+
+      {/* Solution */}
+      {act.solutionText && (
+        <div className="mb-14 border-t border-black/10 pt-10">
+          <h3 className="text-2xl md:text-3xl font-black tracking-tight text-black mb-6">
+            Solution
+          </h3>
+          <p className="text-base md:text-lg text-black/65 leading-relaxed max-w-2xl">
+            {act.solutionText}
+          </p>
         </div>
       )}
 
@@ -194,6 +369,21 @@ export default function ProjectContent({ project }: { project: Project }) {
                 </p>
               </div>
             </motion.section>
+          )}
+
+          {/* Business Goals */}
+          {project.businessGoals && (
+            <BusinessGoalsSection goals={project.businessGoals} />
+          )}
+
+          {/* Process Phases */}
+          {project.processPhases && (
+            <ProcessPhasesSection phases={project.processPhases} />
+          )}
+
+          {/* Qualitative Research */}
+          {project.researchQuote && (
+            <ResearchQuoteSection data={project.researchQuote} />
           )}
 
           {/* Three acts */}

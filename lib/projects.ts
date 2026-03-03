@@ -1,3 +1,10 @@
+export interface ActIteration {
+  title: string;
+  description: string;
+  image?: string;
+  imageLabel?: string;
+}
+
 export interface ProjectAct {
   number: string;
   name: string;
@@ -5,6 +12,8 @@ export interface ProjectAct {
   outcome: string;
   decision: string;
   researchInsights?: string[];
+  iterations?: ActIteration[];
+  solutionText?: string;
   images?: string[];
 }
 
@@ -13,6 +22,25 @@ export interface ProjectContext {
   timeline: string;
   team: string;
   scope: string;
+}
+
+export interface BusinessGoal {
+  number: string;
+  title: string;
+  description: string;
+}
+
+export interface ProcessPhase {
+  number: string;
+  name: string;
+  question: string;
+  methods: string[];
+}
+
+export interface ResearchQuote {
+  quote: string;
+  author: string;
+  insights: Array<{ title: string; description: string }>;
 }
 
 export interface Project {
@@ -41,6 +69,9 @@ export interface Project {
   systemsNote?: string;
   context?: ProjectContext;
   problem?: string;
+  businessGoals?: BusinessGoal[];
+  processPhases?: ProcessPhase[];
+  researchQuote?: ResearchQuote;
 }
 
 export const projects: Project[] = [
@@ -68,6 +99,73 @@ export const projects: Project[] = [
     },
     problem:
       "Three user groups with completely different mental models, workflows, and technical literacy — and a greenfield platform with nothing built yet. Care liaisons were manually reviewing hundreds of ineligible patients with no way to filter or prioritize. Biometric nurses were rebuilding repetitive documentation from scratch each shift. Patients with little to no tech experience were being asked to manage their own clinical data. No design system, no established patterns, no prior designer.",
+    businessGoals: [
+      {
+        number: "01",
+        title: "Increase Hospital Capacity",
+        description:
+          "Reduce inpatient stays by 10% by enabling eligible patients to continue recovery at home, freeing up hospital beds for higher-acuity cases.",
+      },
+      {
+        number: "02",
+        title: "Improve Operational Efficiency",
+        description:
+          "Streamline remote patient monitoring for nurses and care teams, reducing time spent on administrative workload and manual check-ins by 30%.",
+      },
+      {
+        number: "03",
+        title: "Enhance Patient Outcomes and Satisfaction",
+        description:
+          "Support faster recovery and maintain patient satisfaction scores of 4 out of 5 or better through continuous biometric tracking and personalized care in the comfort of home.",
+      },
+    ],
+    processPhases: [
+      {
+        number: "01",
+        name: "Early Market Validation",
+        question: "Why does this product need to exist?",
+        methods: [
+          "Stakeholder interviews",
+          "User interviews",
+          "Competitor analysis",
+        ],
+      },
+      {
+        number: "02",
+        name: "Proof of Concept",
+        question: "Is this something we can solve for the user?",
+        methods: ["Prototyping", "Concept testing", "Usability testing"],
+      },
+      {
+        number: "03",
+        name: "Prototype & Develop",
+        question: "How should we actually build the solution?",
+        methods: ["IA mapping", "Prototyping", "Usability testing"],
+      },
+      {
+        number: "04",
+        name: "Minimum Viable Product",
+        question: "Is our solution something people actually want?",
+        methods: ["User interviews", "Surveys", "In-app feedback"],
+      },
+    ],
+    researchQuote: {
+      quote:
+        "I'm not very tech-savvy, so at first I was nervous about using the iPad — but once I saw how easy it was to check my readings and send them to the nurse, it actually made me feel more in control of my recovery.",
+      author: "Gil, former patient",
+      insights: [
+        {
+          title: "Patients need reassurance and simplicity",
+          description:
+            "Many patients felt anxious about using new technology, highlighting the importance of clear guidance, simple navigation, and ongoing support to build confidence.",
+        },
+        {
+          title: "Patients want meaningful connection with their care team",
+          description:
+            "Patients valued knowing that their nurses could easily see their readings and check in when needed, which made them feel supported and secure while recovering at home.",
+        },
+      ],
+    },
     challenge:
       "Hospital systems needed to expand capacity without compromising care quality. Patients managing recovery at home were anxious about unfamiliar technology, and the interface had to work correctly for the least tech-savvy user in the room, every time.",
     process:
@@ -97,7 +195,8 @@ export const projects: Project[] = [
         surface: "Salesforce Dashboard · Biometric Nurse",
         outcome: "Less time on paperwork. More time on patients.",
         decision:
-          "Salesforce is not a blank canvas — every interaction and layout had to work within its component system. I designed reusable care plan templates that reduced repetitive documentation within that constraint, shifting nurse time from logistics to care.",
+          "Salesforce is not a blank canvas — every interaction had to work within its component system. I designed an AI-generated patient summary that surfaced the right clinical context at the start of each shift, giving nurses a single read-before-you-enter view instead of piecing together data across multiple records.",
+        images: ["/ai-highlighted.png"],
       },
       {
         number: "03",
@@ -107,6 +206,24 @@ export const projects: Project[] = [
           "Patient satisfaction held at 4/5 or better through the full care episode.",
         decision:
           "Eligible patients were declining to enroll — not from clinical hesitation, but because they didn't trust the product or understand its value. I redesigned onboarding around that trust gap, addressing the specific barriers causing drop-off before a single vital was ever submitted.",
+        iterations: [
+          {
+            title: "Navigation",
+            description:
+              "I initially hypothesized that a bottom navigation was superior because it would allow for more space to display items on-screen, but in user testing, 3 of 4 users failed to identify navigation menu items when tasked with navigating to other pages in-app, which resulted in further concepts using a left navigation.",
+            image: "/nav-bottom-wireframe-1.png",
+            imageLabel: "Bottom Nav Wireframe",
+          },
+          {
+            title: "Care Episode Overview",
+            description:
+              "One concept hypothesized that a wholistic, all-in-one view of items related to the patient's care episode could eliminate the need to navigate away from the home page by displaying all relevant information. However, I ultimately learned that patients preferred simplicity and predictability above all else.",
+            image: "/episode-overview.png",
+            imageLabel: "Care Episode Wireframe",
+          },
+        ],
+        solutionText:
+          "Testing made the path forward clear: patients needed familiar navigation, focused tasks, and a persistent sense of their care team's presence. The final design replaced the bottom nav with a persistent left rail, stripped the home screen back to only what mattered that day, and put the nurse connection one tap away at all times.",
         images: [
           "/video-visit-new.png",
           "/vitals-details-new2.png",
