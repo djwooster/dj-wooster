@@ -119,6 +119,40 @@ export const projects: Project[] = [
       "I built a design system from scratch across all three surfaces — two Salesforce apps with their own UI constraints, and a fully custom iOS app. Maintaining coherence across environments that different, with no prior system to reference, was the challenge worth pursuing.",
   },
   {
+    slug: "msk-portal",
+    title: "Oncology Portal Redesign",
+    year: "2022–2023",
+    client: "Memorial Sloan Kettering",
+    tags: [
+      "UX Audit",
+      "Design Systems",
+      "Information Architecture",
+      "Interaction Design",
+      "Enterprise UX",
+    ],
+    tldr: "MSK's legacy oncology portal had no shared view of where the problems were. I ran a three-method audit to align the team on priorities, redesigned key flows using the org design system, and co-led the migration from legacy UI — resulting in a 30% improvement in patient consent flow completion time.",
+    context: {
+      role: "Senior Product Designer",
+      timeline: "Feb 2022 – Jan 2023",
+      team: "Product · Engineering · Clinical stakeholders",
+      scope: "Portal audit · Key flow redesign · Design system migration",
+    },
+    overview:
+      "A legacy oncology portal serving patients, clinicians, and administrative staff — each with different workflows, different mental models, and no shared baseline for what needed fixing. I ran a comprehensive audit, redesigned key flows against the MSK design system, and co-led the migration from legacy UI.",
+    challenge:
+      "Before I opened Figma, I needed the team to agree on what was actually broken. The portal served mixed user types with completely different workflows — and competing opinions about where to start. The audit created a shared, evidence-based backlog where there had only been assumptions.",
+    process:
+      "I ran a three-method audit: a heuristic evaluation produced a severity-ranked issue list; a component inventory exposed UI drift and legacy patterns the design system had never absorbed; and a task flow analysis mapped where each user type was hitting friction. From there I redesigned key flows using the MSK design system and co-led the migration plan — defining the transition path, not just delivering the destination.",
+    outcome:
+      "30% improvement in task completion time for patients navigating the electronic consent flow on arrival. The audit and migration work left the team with a durable foundation — not a one-off redesign requiring another full pass in 18 months.",
+    thumbnail: "/msk-thumbnail.jpg",
+    processImage1: "/msk-original-1.png",
+    processImage1Label: "Legacy UI",
+    processImage2: "/improves-msk-1.png",
+    processImage2Label: "Redesigned",
+    finalImages: ["/form-select-msk.png", "/signature-msk.png"],
+  },
+  {
     slug: "workforce-mobile",
     title: "Workforce Mobile",
     year: "2026",
@@ -155,38 +189,5 @@ export const projects: Project[] = [
     challenge: "",
     process: "",
     outcome: "",
-  },
-  {
-    slug: "msk-portal",
-    title: "Oncology Portal Redesign",
-    year: "2022–2023",
-    client: "Memorial Sloan Kettering",
-    tags: [
-      "UX Audit",
-      "Design Systems",
-      "Information Architecture",
-      "Interaction Design",
-      "Enterprise UX",
-    ],
-    tldr: "MSK's legacy oncology portal had no shared view of where the problems were. I ran a three-method audit to align the team on priorities, redesigned key flows using the org design system, and co-led the migration from legacy UI — resulting in a 30% improvement in patient consent flow completion time.",
-    context: {
-      role: "Senior Product Designer",
-      timeline: "Feb 2022 – Jan 2023",
-      team: "Product · Engineering · Clinical stakeholders",
-      scope: "Portal audit · Key flow redesign · Design system migration",
-    },
-    overview:
-      "A legacy oncology portal serving patients, clinicians, and administrative staff — each with different workflows, different mental models, and no shared baseline for what needed fixing. I ran a comprehensive audit, redesigned key flows against the MSK design system, and co-led the migration from legacy UI.",
-    challenge:
-      "Before I opened Figma, I needed the team to agree on what was actually broken. The portal served mixed user types with completely different workflows — and competing opinions about where to start. The audit created a shared, evidence-based backlog where there had only been assumptions.",
-    process:
-      "I ran a three-method audit: a heuristic evaluation produced a severity-ranked issue list; a component inventory exposed UI drift and legacy patterns the design system had never absorbed; and a task flow analysis mapped where each user type was hitting friction. From there I redesigned key flows using the MSK design system and co-led the migration plan — defining the transition path, not just delivering the destination.",
-    outcome:
-      "30% improvement in task completion time for patients navigating the electronic consent flow on arrival. The audit and migration work left the team with a durable foundation — not a one-off redesign requiring another full pass in 18 months.",
-    processImage1: "/msk-original-1.png",
-    processImage1Label: "Legacy UI",
-    processImage2: "/improves-msk-1.png",
-    processImage2Label: "Redesigned",
-    finalImages: ["/form-select-msk.png", "/signature-msk.png"],
   },
 ];
