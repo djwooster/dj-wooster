@@ -10,9 +10,9 @@ import type {
   BusinessGoal,
   ProcessPhase,
   ResearchQuote,
+  ProjectWidget,
 } from "@/lib/projects";
 import { EASE } from "@/lib/motion";
-import UserFlowDiagram from "@/components/UserFlowDiagram";
 import WorkforceFlowDiagram from "@/components/WorkforceFlowDiagram";
 import ConstructionPersona from "@/components/ConstructionPersona";
 import WorkforceWireframes from "@/components/WorkforceWireframes";
@@ -34,6 +34,13 @@ function PlaceholderImage({
       </span>
     </div>
   );
+}
+
+function Widget({ name }: { name: ProjectWidget }) {
+  if (name === "heuristicEvaluation") return <HeuristicEvaluation />;
+  if (name === "constructionPersona") return <ConstructionPersona />;
+  if (name === "workforceFlowDiagram") return <WorkforceFlowDiagram />;
+  if (name === "workforceWireframes") return <WorkforceWireframes />;
 }
 
 const sectionVariants: Variants = {
@@ -266,19 +273,17 @@ function ActSection({ act }: { act: ProjectAct }) {
       {/* Images */}
       {act.images && act.images.length > 0 ? (
         <div className="flex flex-col gap-8">
-          {(act.imagesReversed ? [...act.images].reverse() : act.images).map(
-            (src, i) => (
-              <Image
-                key={i}
-                src={src}
-                alt={`${act.name} interface`}
-                width={0}
-                height={0}
-                sizes="(max-width: 768px) 100vw, 60vw"
-                className="w-[75vw] h-auto mx-auto block"
-              />
-            )
-          )}
+          {act.images.map((src, i) => (
+            <Image
+              key={i}
+              src={src}
+              alt={`${act.name} interface`}
+              width={0}
+              height={0}
+              sizes="(max-width: 768px) 100vw, 60vw"
+              className="w-[75vw] h-auto mx-auto block"
+            />
+          ))}
         </div>
       ) : (
         <PlaceholderImage label={`${act.name} — Interface`} />
@@ -423,22 +428,24 @@ export default function ProjectContent({ project }: { project: Project }) {
       ) : (
         <>
           {/* Overview */}
-          <motion.section
-            variants={sectionVariants}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, margin: "-80px" }}
-            className="px-6 md:px-12 py-20 border-b border-black/10"
-          >
-            <div className="grid md:grid-cols-[1fr_2fr] gap-8 md:gap-16">
-              <h2 className="text-3xl font-bold tracking-[-.03em] uppercase text-black pt-1">
-                Overview
-              </h2>
-              <p className="text-xl md:text-2xl leading-relaxed font-light text-black/80">
-                {project.overview}
-              </p>
-            </div>
-          </motion.section>
+          {project.overview && (
+            <motion.section
+              variants={sectionVariants}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, margin: "-80px" }}
+              className="px-6 md:px-12 py-20 border-b border-black/10"
+            >
+              <div className="grid md:grid-cols-[1fr_2fr] gap-8 md:gap-16">
+                <h2 className="text-3xl font-bold tracking-[-.03em] uppercase text-black pt-1">
+                  Overview
+                </h2>
+                <p className="text-xl md:text-2xl leading-relaxed font-light text-black/80">
+                  {project.overview}
+                </p>
+              </div>
+            </motion.section>
+          )}
 
           {/* Hero image */}
           {project.heroImage && (
@@ -491,6 +498,7 @@ export default function ProjectContent({ project }: { project: Project }) {
           )}
 
           {/* Challenge */}
+          {project.challenge && (
           <motion.section
             variants={sectionVariants}
             initial="hidden"
@@ -504,8 +512,8 @@ export default function ProjectContent({ project }: { project: Project }) {
             <p className="text-base md:text-lg leading-relaxed text-black/65 max-w-2xl mb-12">
               {project.challenge}
             </p>
-            {project.slug === "msk-portal" ? (
-              <HeuristicEvaluation />
+            {project.challengeWidget ? (
+              <Widget name={project.challengeWidget} />
             ) : (
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 {project.researchImage ? (
@@ -522,21 +530,23 @@ export default function ProjectContent({ project }: { project: Project }) {
                       className="w-full h-auto"
                     />
                   </div>
-                ) : project.slug === "workforce-mobile" ? (
-                  <ConstructionPersona />
+                ) : project.challengeLeftWidget ? (
+                  <Widget name={project.challengeLeftWidget} />
                 ) : (
                   <PlaceholderImage label="Research Photo" />
                 )}
-                {project.slug === "workforce-mobile" ? (
-                  <WorkforceFlowDiagram />
+                {project.challengeRightWidget ? (
+                  <Widget name={project.challengeRightWidget} />
                 ) : (
                   <PlaceholderImage label="Whiteboard Session" />
                 )}
               </div>
             )}
           </motion.section>
+          )}
 
           {/* Process */}
+          {project.process && (
           <motion.section
             variants={sectionVariants}
             initial="hidden"
@@ -551,8 +561,8 @@ export default function ProjectContent({ project }: { project: Project }) {
               {project.process}
             </p>
 
-            {project.slug === "workforce-mobile" ? (
-              <WorkforceWireframes />
+            {project.processWidget ? (
+              <Widget name={project.processWidget} />
             ) : (
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 {[
@@ -584,6 +594,7 @@ export default function ProjectContent({ project }: { project: Project }) {
               </div>
             )}
           </motion.section>
+          )}
 
           {/* Prototype GIF */}
           {project.prototypeGif && (

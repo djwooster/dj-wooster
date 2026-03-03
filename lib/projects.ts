@@ -15,7 +15,6 @@ export interface ProjectAct {
   iterations?: ActIteration[];
   solutionText?: string;
   images?: string[];
-  imagesReversed?: boolean;
 }
 
 export interface ProjectContext {
@@ -44,6 +43,12 @@ export interface ResearchQuote {
   insights: Array<{ title: string; description: string }>;
 }
 
+export type ProjectWidget =
+  | "heuristicEvaluation"
+  | "constructionPersona"
+  | "workforceFlowDiagram"
+  | "workforceWireframes";
+
 export interface Project {
   slug: string;
   title: string;
@@ -51,10 +56,14 @@ export interface Project {
   client: string;
   tags: string[];
   tldr?: string;
-  overview: string;
-  challenge: string;
-  process: string;
-  outcome: string;
+  overview?: string;
+  challenge?: string;
+  process?: string;
+  outcome?: string;
+  challengeWidget?: ProjectWidget;
+  challengeLeftWidget?: ProjectWidget;
+  challengeRightWidget?: ProjectWidget;
+  processWidget?: ProjectWidget;
   thumbnail?: string;
   heroImage?: string;
   researchImage?: string;
@@ -223,14 +232,13 @@ export const projects: Project[] = [
             imageLabel: "Care Episode Wireframe",
           },
         ],
-        imagesReversed: true,
         solutionText:
           "Testing made the path forward clear: patients needed familiar navigation, focused tasks, and a persistent sense of their care team's presence. The final design replaced the bottom nav with a persistent left rail, stripped the home screen back to only what mattered that day, and put the nurse connection one tap away at all times.",
         images: [
-          "/video-visit-new.png",
-          "/vitals-details-new2.png",
-          "/calendar-new.png",
           "/inbound-project-mockup-new.png",
+          "/calendar-new.png",
+          "/vitals-details-new2.png",
+          "/video-visit-new.png",
         ],
       },
     ],
@@ -264,6 +272,7 @@ export const projects: Project[] = [
       "I ran a three-method audit: a heuristic evaluation produced a severity-ranked issue list; a component inventory exposed UI drift and legacy patterns the design system had never absorbed; and a task flow analysis mapped where each user type was hitting friction. From there I redesigned key flows using the MSK design system and co-led the migration plan — defining the transition path, not just delivering the destination.",
     outcome:
       "30% improvement in task completion time for patients navigating the electronic consent flow on arrival. The audit and migration work left the team with a durable foundation — not a one-off redesign requiring another full pass in 18 months.",
+    challengeWidget: "heuristicEvaluation",
     thumbnail: "/msk-thumbnail.jpg",
     processImage1: "/msk-original-1.png",
     processImage1Label: "Legacy UI",
@@ -293,6 +302,9 @@ export const projects: Project[] = [
       "I led three rounds of research with 18 employees spanning hourly field workers, salaried office staff, and HR administrators. A key early insight changed the entire clock-in flow: field workers were often checking in under real time pressure — standing outside in cold weather, wearing work gloves. The gesture had to work in two taps or fewer, with no login prompt. I mapped 8 core user journeys, consolidated 90+ screens into 34 clearly scoped views, and built a component library the engineering team could ship incrementally alongside the legacy system.",
     outcome:
       "Time-entry errors dropped 67% in the first quarter after launch. Benefits enrollment completion rose from 57% to 89%. The App Store rating climbed from 2.1 to 4.6 stars within six months of release. HR support call volume fell 34%, saving an estimated $800K annually in overhead.",
+    challengeLeftWidget: "constructionPersona",
+    challengeRightWidget: "workforceFlowDiagram",
+    processWidget: "workforceWireframes",
     comingSoon: true,
     thumbnail: "/workforce-thumbnail.jpg",
     prototypeGif: "/workforce-gif-2.gif",
@@ -304,9 +316,5 @@ export const projects: Project[] = [
     client: "National Grid",
     comingSoon: true,
     tags: [],
-    overview: "",
-    challenge: "",
-    process: "",
-    outcome: "",
   },
 ];
