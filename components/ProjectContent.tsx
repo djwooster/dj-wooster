@@ -54,7 +54,7 @@ function BusinessGoalsSection({ goals }: { goals: BusinessGoal[] }) {
       viewport={{ once: true, margin: "-80px" }}
       className="px-6 md:px-12 py-20 border-b border-black/10"
     >
-      <h2 className="text-2xl md:text-3xl font-black tracking-tight text-black mb-10">
+      <h2 className="text-3xl font-bold tracking-[-.03em] uppercase text-black mb-10">
         Business Goals
       </h2>
       <div className="divide-y divide-black/[0.06]">
@@ -88,7 +88,7 @@ function ProcessPhasesSection({ phases }: { phases: ProcessPhase[] }) {
       viewport={{ once: true, margin: "-80px" }}
       className="px-6 md:px-12 py-20 border-b border-black/10"
     >
-      <h2 className="text-2xl md:text-3xl font-black tracking-tight text-black mb-10">
+      <h2 className="text-3xl font-bold tracking-[-.03em] uppercase text-black mb-10">
         Process
       </h2>
       <div className="grid grid-cols-1 md:grid-cols-4 gap-px bg-black/[0.06]">
@@ -134,7 +134,7 @@ function ResearchQuoteSection({ data }: { data: ResearchQuote }) {
       viewport={{ once: true, margin: "-80px" }}
       className="px-6 md:px-12 py-20 border-b border-black/10"
     >
-      <h2 className="text-2xl md:text-3xl font-black tracking-tight text-black mb-10">
+      <h2 className="text-3xl font-bold tracking-[-.03em] uppercase text-black mb-10">
         What We Heard
       </h2>
       <blockquote className="text-xl md:text-2xl font-light leading-relaxed text-black/80 max-w-3xl mb-3 border-l-2 border-black/20 pl-8">
@@ -182,7 +182,7 @@ function ActSection({ act }: { act: ProjectAct }) {
       </div>
 
       {/* Outcome — the skimmable hook */}
-      <p className="text-3xl md:text-4xl font-black tracking-tight leading-[1.1] mb-8 max-w-3xl">
+      <p className="text-3xl font-bold tracking-[-.03em] uppercase text-black mb-8 max-w-3xl">
         {act.outcome}
       </p>
 
@@ -194,7 +194,7 @@ function ActSection({ act }: { act: ProjectAct }) {
       {/* Research insights */}
       {act.researchInsights && (
         <div className="mb-14 border-t border-black/10 pt-10">
-          <h3 className="text-2xl md:text-3xl font-black tracking-tight text-black mb-6">
+          <h3 className="text-3xl font-bold tracking-[-.03em] uppercase text-black mb-6">
             Key Insights
           </h3>
           <ul className="space-y-5 max-w-2xl">
@@ -222,7 +222,7 @@ function ActSection({ act }: { act: ProjectAct }) {
             {act.iterations.map((iteration: ActIteration) => (
               <div key={iteration.title} className="bg-white">
                 <div className="py-8 pb-6">
-                  <h3 className="text-2xl md:text-3xl font-black tracking-tight text-black mb-3">
+                  <h3 className="text-3xl font-bold tracking-[-.03em] uppercase text-black mb-3">
                     {iteration.title}
                   </h3>
                   <p className="text-base md:text-lg text-black/65 leading-relaxed max-w-2xl">
@@ -254,7 +254,7 @@ function ActSection({ act }: { act: ProjectAct }) {
       {/* Solution */}
       {act.solutionText && (
         <div className="mb-14 border-t border-black/10 pt-10">
-          <h3 className="text-2xl md:text-3xl font-black tracking-tight text-black mb-6">
+          <h3 className="text-3xl font-bold tracking-[-.03em] uppercase text-black mb-6">
             Solution
           </h3>
           <p className="text-base md:text-lg text-black/65 leading-relaxed max-w-2xl">
@@ -395,7 +395,7 @@ export default function ProjectContent({ project }: { project: Project }) {
               viewport={{ once: true, margin: "-80px" }}
               className="px-6 md:px-12 py-20 border-b border-black/10"
             >
-              <h2 className="text-2xl md:text-3xl font-black tracking-tight text-black mb-6">
+              <h2 className="text-3xl font-bold tracking-[-.03em] uppercase text-black mb-6">
                 Design System
               </h2>
               <p className="text-base md:text-lg text-black/65 leading-relaxed max-w-2xl">
@@ -412,7 +412,7 @@ export default function ProjectContent({ project }: { project: Project }) {
             viewport={{ once: true, margin: "-80px" }}
             className="px-6 md:px-12 py-20"
           >
-            <h2 className="text-2xl md:text-3xl font-black tracking-tight text-black mb-6">
+            <h2 className="text-3xl font-bold tracking-[-.03em] uppercase text-black mb-6">
               Outcome
             </h2>
             <p className="text-base md:text-lg leading-relaxed text-black/65 max-w-2xl">
