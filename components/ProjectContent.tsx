@@ -449,6 +449,35 @@ export default function ProjectContent({ project }: { project: Project }) {
             </motion.section>
           )}
 
+          {/* Context */}
+          {project.context && (
+            <motion.section
+              variants={sectionVariants}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, margin: "-80px" }}
+              className="px-6 md:px-12 py-14 border-b border-black/10"
+            >
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+                {(
+                  [
+                    { label: "Role", value: project.context.role },
+                    { label: "Timeline", value: project.context.timeline },
+                    { label: "Team", value: project.context.team },
+                    { label: "Scope", value: project.context.scope },
+                  ] as { label: string; value: string }[]
+                ).map(({ label, value }) => (
+                  <div key={label}>
+                    <p className="text-xs tracking-[0.3em] uppercase text-black/35 mb-2">
+                      {label}
+                    </p>
+                    <p className="text-sm text-black/70 leading-relaxed">{value}</p>
+                  </div>
+                ))}
+              </div>
+            </motion.section>
+          )}
+
           {/* Problem statement */}
           {project.problem && (
             <motion.section
@@ -553,35 +582,6 @@ export default function ProjectContent({ project }: { project: Project }) {
                 priority
               />
             </motion.div>
-          )}
-
-          {/* Context */}
-          {project.context && (
-            <motion.section
-              variants={sectionVariants}
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true, margin: "-80px" }}
-              className="px-6 md:px-12 py-14 border-b border-black/10"
-            >
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
-                {(
-                  [
-                    { label: "Role", value: project.context.role },
-                    { label: "Timeline", value: project.context.timeline },
-                    { label: "Team", value: project.context.team },
-                    { label: "Scope", value: project.context.scope },
-                  ] as { label: string; value: string }[]
-                ).map(({ label, value }) => (
-                  <div key={label}>
-                    <p className="text-xs tracking-[0.3em] uppercase text-black/35 mb-2">
-                      {label}
-                    </p>
-                    <p className="text-sm text-black/70 leading-relaxed">{value}</p>
-                  </div>
-                ))}
-              </div>
-            </motion.section>
           )}
 
           {/* Challenge */}
