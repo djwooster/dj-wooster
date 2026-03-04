@@ -91,9 +91,6 @@ export default function FeaturedProjects() {
                 >
                   {project.title}
                 </h3>
-                <p className="text-[15px] text-black/55 mt-1 tracking-wide">
-                  {project.year}
-                </p>
               </div>
               {!project.comingSoon && (
                 <span className="text-xl text-black/20 group-hover:text-black group-hover:translate-x-2 transition-all duration-300 shrink-0 mt-1">

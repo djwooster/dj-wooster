@@ -73,12 +73,15 @@ export interface Project {
   processImages?: string[];
   thumbnail?: string;
   heroImage?: string;
+  heroImageLabel?: string;
   researchImage?: string;
   researchImageLabel?: string;
   prototypeGif?: string;
   processImage1?: string;
   processImage2?: string;
   finalImages?: string[];
+  solutionText?: string;
+  solutionItems?: Array<{ title: string; description: string; image: string }>;
   processImage1Label?: string;
   processImage2Label?: string;
   comingSoon?: boolean;
@@ -388,7 +391,137 @@ export const projects: Project[] = [
     title: "National Grid",
     year: "2025",
     client: "National Grid",
-    comingSoon: true,
-    tags: [],
+    tags: [
+      "UX Research",
+      "Tablet Design",
+      "Interaction Design",
+      "Usability Testing",
+      "Visual Design",
+    ],
+    tldr: "National Grid's Field Force App was losing crew members to paper and low adoption. I audited the current experience, ran field research with crews, and redesigned the tablet app around four core user needs — improving task completion and reducing the cognitive load of an already demanding job.",
+    context: {
+      role: "Product Designer",
+      timeline: "2025",
+      team: "Product · Engineering · Field operations stakeholders",
+      scope: "Tablet app redesign · UX research · Prototype testing",
+    },
+    overview:
+      "National Grid's Field Force App gives crew members a way to locate and complete work orders in the field — but the existing experience was creating friction rather than reducing it. I led the UX research and redesign effort, moving from a cluttered, low-trust interface to one built around how crews actually work.",
+    problem:
+      "The Field Force App allows National Grid crew members employed in the field to locate requests to complete work. The decision was pre-defined to go in the direction of a tablet application as the primary tool to facilitate these interactions.",
+    rootCauses: [
+      {
+        title: "Weak visual hierarchy",
+        description:
+          "The interface gave equal visual weight to everything, leaving users to determine on their own what mattered most.",
+      },
+      {
+        title: "Cluttered UI reducing task performance",
+        description:
+          "Visual noise was getting in the way of the core workflow — find work, complete it, move on.",
+      },
+      {
+        title: "Mental model mismatch",
+        description:
+          "The app's structure didn't reflect how crews expected modern apps to work, creating unnecessary learning overhead.",
+      },
+      {
+        title: "Wrong information prioritized",
+        description:
+          "The most prominently displayed data wasn't what crews needed to make decisions and complete tasks efficiently.",
+      },
+      {
+        title: "Untapped visual design fundamentals",
+        description:
+          "Applying basic principles — contrast, grouping, hierarchy — had clear potential to reduce cognitive load and improve adoption.",
+      },
+    ],
+    businessGoals: [
+      {
+        number: "01",
+        title: "Increase task success & completion and minimize time spent on task",
+        description: "",
+      },
+      {
+        number: "02",
+        title: "Establish trust and credibility through reliable performance and enhanced usability",
+        description: "",
+      },
+      {
+        number: "03",
+        title: "Eliminate unnecessary paper use via company-provided iPads",
+        description: "",
+      },
+      {
+        number: "04",
+        title: "Reduce & prevent errors and reduce the work required to accomplish tasks",
+        description: "",
+      },
+      {
+        number: "05",
+        title: "Increase usage among areas with low adoption",
+        description: "",
+      },
+    ],
+    researchContext:
+      "Research focused on four key areas: the challenges and barriers crew members faced with app adoption, what made for a great experience in the field, which needs were and weren't being met, and how crews were currently interacting with technology on the job. We also gathered direct feedback on lo-fi and mid-fi prototypes.",
+    testimonials: [
+      {
+        quote:
+          "Crews can spend an entire day in the field without returning to base. The ability to select jobs geographically and plan a route isn't a convenience — it's how the work gets done.",
+        author: "Visual Planning",
+      },
+      {
+        quote:
+          "Core frustrations traced back to arriving at locations that couldn't be serviced due to inaccurate data. Leaving notes for fellow crew members was one of the most valued tools for coordination and efficiency.",
+        author: "Teamwork to Drive Efficiency",
+      },
+      {
+        quote:
+          "Some users actively avoided new processes. The redesign had to match the conventions crews already expected — not introduce new patterns that required relearning.",
+        author: "Energy Investment",
+      },
+      {
+        quote:
+          "The crew's primary goal is selecting jobs and submitting work for completion. Inaccurate data and time-consuming job browsing were directly undermining that — accuracy wasn't a nice-to-have, it was the job.",
+        author: "Accuracy Is Key",
+      },
+    ],
+    keyInsight:
+      "Crew members weren't resisting the app — they were resisting an app that didn't respect how they work. Route planning, data accuracy, and teammate coordination weren't feature requests. They were the job.",
+    thumbnail: "/nat-grid-thumbnail.jpg",
+    heroImage: "/Current-Experience-Section.png",
+    heroImageLabel: "Before Redesign",
+    process:
+      "Research mapped the core user flows and built out a persona grounded in field observations. From there I developed a styleguide to establish visual cohesion before moving into high-fidelity design — ensuring every component decision had a system behind it.",
+    processImages: ["/Research-frame.png", "/styleguide.png"],
+    solutionItems: [
+      {
+        title: "Home Screen",
+        description:
+          "The redesigned home screen eliminated visual noise and maximized usable screen real estate — reducing cognitive load and directing crew members immediately to what mattered most: finding and completing jobs.",
+        image: "/mockup-empty.png",
+      },
+      {
+        title: "Simple",
+        description:
+          "Field crews don't need complexity — they need accurate, immediately actionable information that supports fast decision-making.",
+        image: "/mockup-leftnav.png",
+      },
+      {
+        title: "List View",
+        description:
+          "Research yielded overwhelming results that called for an alternative to the traditional map view, which ultimately became a table-like view containing the information users declared was most important to know.",
+        image: "/mockup-listview.png",
+      },
+      {
+        title: "Revamp",
+        description:
+          "Crews are frequently pulled away from active jobs to handle urgent or emergency calls. An organized view of jobs in progress gives users the context they need to prioritize where to go next.",
+        image: "/mockup-myjob.png",
+      },
+    ],
+    outcome:
+      "Redesigned the Field Force tablet app around four validated crew needs — improving task clarity, reducing visual clutter, and establishing a foundation for higher adoption across low-usage areas.",
   },
 ];

@@ -10,7 +10,7 @@ const navLinks = [
   { label: "Work", href: "/#work" },
   { label: "Process", href: "/#process" },
   { label: "About", href: "/#about" },
-  { label: "Contact", href: "mailto:hello@djwooster.com" },
+  { label: "Contact", href: "mailto:contact@djwooster.com" },
 ];
 
 export default function Navigation() {

@@ -429,6 +429,30 @@ export default function ProjectContent({ project }: { project: Project }) {
         </>
       ) : (
         <>
+          {/* Opening image (labeled before-state) */}
+          {project.heroImage && project.heroImageLabel && (
+            <motion.div
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.7 }}
+              className="px-6 md:px-12 py-8 border-b border-black/10"
+            >
+              <p className="text-xs tracking-[0.3em] uppercase text-black/35 mb-6">
+                {project.heroImageLabel}
+              </p>
+              <Image
+                src={project.heroImage}
+                alt={project.heroImageLabel}
+                width={0}
+                height={0}
+                sizes="(max-width: 768px) 100vw, 80vw"
+                className="w-full h-auto shadow-[0_2px_20px_rgba(0,0,0,0.08)]"
+                priority
+              />
+            </motion.div>
+          )}
+
           {/* Overview */}
           {project.overview && (
             <motion.section
@@ -563,8 +587,8 @@ export default function ProjectContent({ project }: { project: Project }) {
             <BusinessGoalsSection goals={project.businessGoals} />
           )}
 
-          {/* Hero image */}
-          {project.heroImage && (
+          {/* Hero image (unlabeled — final product showcase) */}
+          {project.heroImage && !project.heroImageLabel && (
             <motion.div
               initial={{ opacity: 0 }}
               whileInView={{ opacity: 1 }}
@@ -736,27 +760,63 @@ export default function ProjectContent({ project }: { project: Project }) {
             </motion.div>
           )}
 
-          {/* Final design images */}
-          {project.finalImages && project.finalImages.length > 0 && (
-            <motion.div
-              initial={{ opacity: 0 }}
-              whileInView={{ opacity: 1 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.7 }}
-              className="px-6 md:px-12 py-8 border-b border-black/10 flex flex-col items-center gap-6"
+          {/* Solution */}
+          {(project.solutionText || project.solutionItems || (project.finalImages && project.finalImages.length > 0)) && (
+            <motion.section
+              variants={sectionVariants}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, margin: "-80px" }}
+              className="px-6 md:px-12 py-20 border-b border-black/10"
             >
-              {project.finalImages.map((src, i) => (
-                <Image
-                  key={i}
-                  src={src}
-                  alt={`Final design ${i + 1}`}
-                  width={0}
-                  height={0}
-                  sizes="80vw"
-                  className="w-[80vw] h-auto block"
-                />
-              ))}
-            </motion.div>
+              <h2 className="text-3xl font-bold tracking-[-.03em] uppercase text-black mb-10">
+                Solution
+              </h2>
+              {project.solutionText && (
+                <p className="text-base md:text-lg leading-relaxed text-black/65 max-w-2xl mb-12">
+                  {project.solutionText}
+                </p>
+              )}
+              {project.solutionItems && (
+                <div className="flex flex-col gap-20">
+                  {project.solutionItems.map((item, i) => (
+                    <div key={i} className="grid md:grid-cols-[1fr_2fr] gap-8 md:gap-16 items-center">
+                      <div>
+                        <h3 className="text-xl font-bold tracking-[-.03em] uppercase text-black mb-3">
+                          {item.title}
+                        </h3>
+                        <p className="text-base leading-relaxed text-black/65">
+                          {item.description}
+                        </p>
+                      </div>
+                      <Image
+                        src={item.image}
+                        alt={item.title}
+                        width={0}
+                        height={0}
+                        sizes="(max-width: 768px) 100vw, 60vw"
+                        className="w-full h-auto block"
+                      />
+                    </div>
+                  ))}
+                </div>
+              )}
+              {project.finalImages && (
+                <div className="flex flex-col gap-8">
+                  {project.finalImages.map((src, i) => (
+                    <Image
+                      key={i}
+                      src={src}
+                      alt={`Solution ${i + 1}`}
+                      width={0}
+                      height={0}
+                      sizes="(max-width: 768px) 100vw, 80vw"
+                      className="w-full h-auto block"
+                    />
+                  ))}
+                </div>
+              )}
+            </motion.section>
           )}
 
           {/* Outcome */}
