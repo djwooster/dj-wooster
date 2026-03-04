@@ -55,7 +55,7 @@ function SeverityDots({ level }: { level: number }) {
           />
         ))}
       </div>
-      <span className="text-[9px] tracking-widest uppercase text-black/30 hidden md:inline">
+      <span className="text-sm tracking-widest uppercase text-black/55 hidden md:inline">
         {severityLabels[level]}
       </span>
     </div>
@@ -67,10 +67,10 @@ export default function HeuristicEvaluation() {
     <div className="w-full border border-black/10 bg-black/[0.02] p-6 md:p-10">
       {/* Header */}
       <div className="flex items-start justify-between mb-8">
-        <p className="text-[11px] font-medium tracking-[0.3em] uppercase text-black/50">
+        <p className="text-sm font-medium tracking-[0.3em] uppercase text-black/70">
           Heuristic Evaluation
         </p>
-        <p className="text-[10px] tracking-widest uppercase text-black/25">
+        <p className="text-sm tracking-widest uppercase text-black/55">
           Nielsen's 10 Heuristics
         </p>
       </div>
@@ -78,9 +78,9 @@ export default function HeuristicEvaluation() {
       {/* Column headers */}
       <div className="grid grid-cols-[28px_1fr_auto] md:grid-cols-[28px_1fr_140px_1fr] gap-x-6 pb-3 border-b border-black/10">
         <span />
-        <span className="text-[9px] tracking-[0.25em] uppercase text-black/25">Heuristic</span>
-        <span className="text-[9px] tracking-[0.25em] uppercase text-black/25">Severity</span>
-        <span className="text-[9px] tracking-[0.25em] uppercase text-black/25 hidden md:block">Finding</span>
+        <span className="text-sm tracking-[0.25em] uppercase text-black/55">Heuristic</span>
+        <span className="text-sm tracking-[0.25em] uppercase text-black/55">Severity</span>
+        <span className="text-sm tracking-[0.25em] uppercase text-black/55 hidden md:block">Finding</span>
       </div>
 
       {/* Rows */}
@@ -89,14 +89,14 @@ export default function HeuristicEvaluation() {
           key={row.number}
           className="grid grid-cols-[28px_1fr_auto] md:grid-cols-[28px_1fr_140px_1fr] gap-x-6 py-4 border-b border-black/[0.06] items-start"
         >
-          <span className="text-[10px] font-mono text-black/25 pt-[1px]">
+          <span className="text-sm font-mono text-black/55 pt-[1px]">
             {row.number}
           </span>
-          <p className="text-[11px] font-bold tracking-widest uppercase text-black/70 leading-snug">
+          <p className="text-sm font-bold tracking-widest uppercase text-black/80 leading-snug">
             {row.heuristic}
           </p>
           <SeverityDots level={row.severity} />
-          <p className="text-[10px] text-black/45 leading-relaxed hidden md:block">
+          <p className="text-sm text-black/60 leading-relaxed hidden md:block">
             {row.finding}
           </p>
         </div>
@@ -114,7 +114,7 @@ export default function HeuristicEvaluation() {
                 />
               ))}
             </div>
-            <span className="text-[9px] tracking-widest uppercase text-black/25">
+            <span className="text-sm tracking-widest uppercase text-black/55">
               {severityLabels[level]}
             </span>
           </div>

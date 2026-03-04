@@ -6,7 +6,6 @@ import Link from "next/link";
 import { projects } from "@/lib/projects";
 import { EASE } from "@/lib/motion";
 
-
 export default function FeaturedProjects() {
   return (
     <section id="work" className="px-6 md:px-12 py-24 border-t border-black/10">
@@ -42,14 +41,24 @@ export default function FeaturedProjects() {
                     <motion.p
                       className="text-5xl md:text-6xl font-black tracking-tight uppercase leading-none text-center text-white"
                       animate={{ opacity: [0.35, 0.7, 0.35] }}
-                      transition={{ duration: 3.5, repeat: Infinity, ease: "easeInOut" }}
+                      transition={{
+                        duration: 3.5,
+                        repeat: Infinity,
+                        ease: "easeInOut",
+                      }}
                     >
-                      Coming<br />Soon
+                      Coming
+                      <br />
+                      Soon
                     </motion.p>
                     <motion.div
                       className="h-px w-10 bg-white"
                       animate={{ scaleX: [1, 2, 1], opacity: [0.2, 0.5, 0.2] }}
-                      transition={{ duration: 3.5, repeat: Infinity, ease: "easeInOut" }}
+                      transition={{
+                        duration: 3.5,
+                        repeat: Infinity,
+                        ease: "easeInOut",
+                      }}
                       style={{ transformOrigin: "center" }}
                     />
                   </div>
