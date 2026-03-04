@@ -261,7 +261,7 @@ export const projects: Project[] = [
   },
   {
     slug: "msk-portal",
-    title: "Oncology Portal Redesign",
+    title: "Modernizing Legacy Oncology Portal",
     year: "2022–2023",
     client: "Memorial Sloan Kettering",
     tags: [
@@ -388,7 +388,7 @@ export const projects: Project[] = [
   },
   {
     slug: "national-grid",
-    title: "National Grid",
+    title: "Modernizing the Field Force Application",
     year: "2025",
     client: "National Grid",
     tags: [
