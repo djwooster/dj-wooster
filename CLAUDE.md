@@ -25,7 +25,7 @@ UX/UI portfolio for DJ Wooster. Built for recruiters — short, imagery-forward,
 
 ### Typography scale
 - **Hero titles:** `text-[12vw] md:text-[6vw] font-black tracking-tight`
-- **Section headings:** `text-3xl font-bold tracking-[-.03em] uppercase` — used for Business Goals, Process, What We Heard, Key Insights, What We Tested, Solution, Design System, Outcome, Overview, The Challenge, The Problem
+- **Section headings:** `text-3xl font-bold tracking-[-.03em] uppercase text-black` — used for ALL named sections: Business Goals, Process, What We Heard, Key Insights, What We Tested, Solution, Design System, Outcome, Overview, The Challenge, The Problem, Problem Statement, Root Causes, Qualitative Research, Key Insight. **Never use the small label style (`text-xs tracking-[0.3em] uppercase text-black/35`) for section titles** — reserve that only for sub-labels and metadata.
 - **Act headings:** `text-4xl md:text-5xl font-black tracking-tight leading-none`
 - **Act outcome stats:** `text-3xl font-bold tracking-[-.03em] uppercase text-black`
 - **Body text:** `text-base md:text-lg leading-relaxed text-black/65`
@@ -125,5 +125,5 @@ images?: string[]             // ordered as you want them displayed (no reversal
 |---|---|---|---|
 | `inbound-health` | Hospital at Home | Acts | Live on main |
 | `msk-portal` | Oncology Portal Redesign | Standard | Live on main |
-| `workforce-mobile` | Workforce Mobile | Standard | `comingSoon: true` |
+| `msk-data-abstraction` | Patient Data Abstraction | Standard | In progress — copy + images TBD |
 | `national-grid` | National Grid | — | `comingSoon: true` |

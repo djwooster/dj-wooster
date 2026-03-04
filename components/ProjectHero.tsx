@@ -43,7 +43,7 @@ export default function ProjectHero({ project }: { project: Project }) {
       </motion.div>
 
       {/* Title */}
-      <div className="overflow-hidden">
+      <div className="overflow-hidden pb-4 -mb-4">
         <motion.h1
           initial={{ y: 120 }}
           animate={{ y: 0 }}

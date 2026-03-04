@@ -37,6 +37,11 @@ export interface ProcessPhase {
   methods: string[];
 }
 
+export interface Testimonial {
+  quote: string;
+  author: string;
+}
+
 export interface ResearchQuote {
   quote: string;
   author: string;
@@ -61,9 +66,11 @@ export interface Project {
   process?: string;
   outcome?: string;
   challengeWidget?: ProjectWidget;
+  challengeImages?: string[];
   challengeLeftWidget?: ProjectWidget;
   challengeRightWidget?: ProjectWidget;
   processWidget?: ProjectWidget;
+  processImages?: string[];
   thumbnail?: string;
   heroImage?: string;
   researchImage?: string;
@@ -82,6 +89,10 @@ export interface Project {
   businessGoals?: BusinessGoal[];
   processPhases?: ProcessPhase[];
   researchQuote?: ResearchQuote;
+  testimonials?: Testimonial[];
+  researchContext?: string;
+  keyInsight?: string;
+  rootCauses?: Array<{ title: string; description: string }>;
 }
 
 export const projects: Project[] = [
@@ -281,33 +292,96 @@ export const projects: Project[] = [
     finalImages: ["/form-select-msk.png", "/signature-msk.png"],
   },
   {
-    slug: "workforce-mobile",
-    title: "Workforce Mobile",
-    year: "2026",
-    client: "Enterprise HR Platform",
+    slug: "msk-data-abstraction",
+    title: "Patient Data Abstraction",
+    year: "2022–2023",
+    client: "Memorial Sloan Kettering",
     tags: [
-      "User Research",
-      "iOS Design",
-      "Interaction Design",
+      "Visual Design",
+      "Component Architecture",
+      "Dashboard Design",
+      "Data Visualization",
       "Design Systems",
-      "Usability Testing",
-      "Information Architecture",
     ],
-    tldr: "A legacy workforce app carrying a 2.1-star rating was failing employees at every critical moment — payday, benefits enrollment, and clocking in. I led a ground-up redesign anchored in field research with hourly workers, salaried staff, and HR admins, consolidating 90+ screens into 34 focused views. Time-entry errors dropped 67%, benefits enrollment rose from 57% to 89%, and the App Store rating climbed from 2.1 to 4.6 stars within six months.",
+    tldr: "CTDataHub is a centralized workspace I designed at Memorial Sloan Kettering that extracts and consolidates patient health and medication data from the EHR into a single, automated view — eliminating the context-switching that was costing nurses measurable time and accuracy on every shift.",
+    context: {
+      role: "Visual Designer",
+      timeline: "2022–2023",
+      team: "Product · Engineering · Clinical stakeholders",
+      scope: "Visual design · Component architecture · Research synthesis",
+    },
     overview:
-      "A ground-up redesign of a legacy iOS payroll and HR application used by thousands of hourly and salaried workers to manage timekeeping, pay, and benefits. The existing app hadn't been meaningfully updated in six years and was failing employees at the moments that mattered most — payday, benefits enrollment, and clocking in at job sites.",
+      "CTDataHub is a centralized workspace that extracts and consolidates patient health and medication data from the EHR and displays it in a user-friendly, automated, and consolidated view. As the visual designer on the project, I led the UI from concept to polished component library, working alongside the team to synthesize research findings into a dashboard nurses could actually trust.",
     challenge:
-      "The legacy app carried a 2.1-star App Store rating and a growing backlog of support tickets. Time-entry errors were costing the company an estimated $1.2M annually in payroll corrections. 43% of employees abandoned benefits enrollment mid-flow and completed it over the phone instead — a costly, avoidable workaround. The app's information architecture predated modern iOS conventions, making routine tasks like locating a pay stub feel unnecessarily difficult.",
+      "Nurses had no single source of truth. Critical patient data was scattered across multiple systems — each with its own navigation model and terminology. The cognitive overhead of context-switching was measurable: time lost, details missed, and a workflow that asked nurses to do too much remembering and not enough caring. The wireframes below were the starting point — a rough structural foundation that mapped the data hierarchy before any visual decisions were made.",
+    challengeImages: ["/poc-wireframe-1.png", "/poc-wireframe-2.png"],
     process:
-      "I led three rounds of research with 18 employees spanning hourly field workers, salaried office staff, and HR administrators. A key early insight changed the entire clock-in flow: field workers were often checking in under real time pressure — standing outside in cold weather, wearing work gloves. The gesture had to work in two taps or fewer, with no login prompt. I mapped 8 core user journeys, consolidated 90+ screens into 34 clearly scoped views, and built a component library the engineering team could ship incrementally alongside the legacy system.",
+      "I synthesized findings from clinical staff interviews to map the highest-frequency tasks and the specific data points nurses referenced most. From there I led the visual design and component architecture — building a system that could handle high information density without overwhelming the user, and that could absorb new data sources without requiring a redesign.",
+    problem:
+      "Current manual data abstraction workflows were keeping MSK staff from more important aspects of clinical care and creating a financial burden on the facility.",
+    rootCauses: [
+      {
+        title: "No single source of truth",
+        description:
+          "Patient data lived across multiple disconnected systems and departments — making it nearly impossible to surface the right information quickly, or report it back to trial sponsors on time.",
+      },
+      {
+        title: "Data staff couldn't fully trust",
+        description:
+          "Without standardization, clinical staff routinely double-checked their own work — waiting for a colleague to confirm what they were seeing before acting on it, adding delays that compounded across every shift.",
+      },
+      {
+        title: "Automation opportunities going unused",
+        description:
+          "High-value signals like Serious Adverse Events could have been surfaced automatically. Instead, staff were manually scanning records to find them.",
+      },
+      {
+        title: "The wrong people doing the wrong work",
+        description:
+          "Senior clinical staff were spending a measurable portion of their shifts on manual data retrieval — time that should have gone to patient care, coordination, and support.",
+      },
+    ],
+    businessGoals: [
+      {
+        number: "01",
+        title: "Increase the rate at which the correct data was identified by 50%",
+        description: "",
+      },
+      {
+        number: "02",
+        title: "Decrease the time required to identify the correct data by 50%",
+        description: "",
+      },
+      {
+        number: "03",
+        title: "Decrease the perceived difficulty of identifying the correct data by 30%",
+        description: "",
+      },
+    ],
+    processImages: [
+      "/patient-abstraction-wireframe-3.png",
+      "/patient-abstraction-final-4.png",
+    ],
+    researchContext:
+      "I sat in on 6 one-hour, semi-structured interviews with clinical staff — observing workflows, noting friction points, and synthesizing findings into design direction. I didn't lead the research, but the sessions gave me direct access to the language and mental models I needed to make the right visual decisions.",
+    testimonials: [
+      {
+        quote:
+          "It would be great to see all of this information in one place, especially with the medications — because that's something that manually takes an incredible amount of time to go through every single EMR document to see when the patients started this medication.",
+        author: "Kalista, Clinical Research Coordinator",
+      },
+      {
+        quote:
+          "Some patients can have like 25 adverse events and 100 medications and we have to look through every document. I was definitely overwhelmed the first time I logged into CTMS. I wish there was a simpler solution because there is a lot of information in here that isn't relevant for us.",
+        author: "Anmol, Clinical Research Coordinator",
+      },
+    ],
+    keyInsight:
+      "Consolidation was the feature. Every other design decision flowed from getting Adverse Event and medication data into one place.",
     outcome:
-      "Time-entry errors dropped 67% in the first quarter after launch. Benefits enrollment completion rose from 57% to 89%. The App Store rating climbed from 2.1 to 4.6 stars within six months of release. HR support call volume fell 34%, saving an estimated $800K annually in overhead.",
-    challengeLeftWidget: "constructionPersona",
-    challengeRightWidget: "workforceFlowDiagram",
-    processWidget: "workforceWireframes",
-    comingSoon: true,
-    thumbnail: "/workforce-thumbnail.jpg",
-    prototypeGif: "/workforce-gif-2.gif",
+      "By aggregating patient health and medication data from the EHR into a single consolidated view, CTDataHub reduced the time nurses spent locating critical information by approximately 40% — turning a fragmented, multi-system workflow into a single source of truth.",
+    heroImage: "/patient-abstraction-hero.png",
+    thumbnail: "/patient-abstraction-thumb.jpg",
   },
   {
     slug: "national-grid",

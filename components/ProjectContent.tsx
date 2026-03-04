@@ -10,6 +10,7 @@ import type {
   BusinessGoal,
   ProcessPhase,
   ResearchQuote,
+  Testimonial,
   ProjectWidget,
 } from "@/lib/projects";
 import { EASE } from "@/lib/motion";
@@ -64,21 +65,22 @@ function BusinessGoalsSection({ goals }: { goals: BusinessGoal[] }) {
       <h2 className="text-3xl font-bold tracking-[-.03em] uppercase text-black mb-10">
         Business Goals
       </h2>
-      <div className="divide-y divide-black/[0.06]">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-px bg-black/[0.06]">
         {goals.map((goal) => (
-          <div
-            key={goal.number}
-            className="grid md:grid-cols-[40px_1fr_2fr] gap-6 md:gap-10 py-8 items-start"
-          >
-            <span className="text-[10px] font-mono text-black/25 pt-[2px]">
+          <div key={goal.number} className="bg-white p-8 flex flex-col gap-6">
+            <span className="text-5xl md:text-6xl font-black tracking-tight text-black/15">
               {goal.number}
             </span>
-            <h3 className="text-sm font-bold tracking-[0.15em] uppercase text-black/80 leading-snug">
-              {goal.title}
-            </h3>
-            <p className="text-sm md:text-base text-black/55 leading-relaxed">
-              {goal.description}
-            </p>
+            <div>
+              <h3 className="text-sm font-bold tracking-[0.15em] uppercase text-black/80 leading-snug mb-3">
+                {goal.title}
+              </h3>
+              {goal.description && (
+                <p className="text-sm text-black/55 leading-relaxed">
+                  {goal.description}
+                </p>
+              )}
+            </div>
           </div>
         ))}
       </div>
@@ -447,6 +449,91 @@ export default function ProjectContent({ project }: { project: Project }) {
             </motion.section>
           )}
 
+          {/* Problem statement */}
+          {project.problem && (
+            <motion.section
+              variants={sectionVariants}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, margin: "-80px" }}
+              className="px-6 md:px-12 py-20 border-b border-black/10"
+            >
+              <h2 className="text-3xl font-bold tracking-[-.03em] uppercase text-black mb-6">
+                Problem Statement
+              </h2>
+              <p className="text-xl md:text-2xl font-bold leading-snug text-black mb-12 max-w-3xl">
+                {project.problem}
+              </p>
+              {project.rootCauses && (
+                <div className="border border-black/10 bg-black/[0.02] p-8">
+                  <h3 className="text-3xl font-bold tracking-[-.03em] uppercase text-black mb-8">
+                    Root Causes
+                  </h3>
+                  <ul className="space-y-6">
+                    {project.rootCauses.map((cause, i) => (
+                      <li key={i} className="flex gap-4 items-start">
+                        <div className="w-1 h-1 bg-black/30 shrink-0 mt-[9px]" />
+                        <p className="text-sm md:text-base text-black/65 leading-relaxed">
+                          <span className="font-bold text-black/80">
+                            {cause.title}
+                          </span>{" "}
+                          {cause.description}
+                        </p>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              )}
+            </motion.section>
+          )}
+
+          {/* Qualitative Research */}
+          {project.testimonials && (
+            <motion.section
+              variants={sectionVariants}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, margin: "-80px" }}
+              className="px-6 md:px-12 py-20 border-b border-black/10"
+            >
+              <h2 className="text-3xl font-bold tracking-[-.03em] uppercase text-black mb-6">
+                Qualitative Research
+              </h2>
+              {project.researchContext && (
+                <p className="text-base md:text-lg leading-relaxed text-black/65 max-w-2xl mb-12">
+                  {project.researchContext}
+                </p>
+              )}
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-10">
+                {project.testimonials.map((t: Testimonial, i: number) => (
+                  <div key={i} className="border border-black/10 bg-black/[0.02] p-8">
+                    <blockquote className="text-base leading-relaxed text-black/70 mb-6">
+                      &ldquo;{t.quote}&rdquo;
+                    </blockquote>
+                    <p className="text-xs tracking-widest uppercase text-black/35">
+                      — {t.author}
+                    </p>
+                  </div>
+                ))}
+              </div>
+              {project.keyInsight && (
+                <div className="border-l-2 border-black/20 pl-8">
+                  <h3 className="text-3xl font-bold tracking-[-.03em] uppercase text-black mb-3">
+                    Key Insight
+                  </h3>
+                  <p className="text-xl md:text-2xl font-bold leading-snug text-black max-w-2xl">
+                    {project.keyInsight}
+                  </p>
+                </div>
+              )}
+            </motion.section>
+          )}
+
+          {/* Business Goals */}
+          {project.businessGoals && (
+            <BusinessGoalsSection goals={project.businessGoals} />
+          )}
+
           {/* Hero image */}
           {project.heroImage && (
             <motion.div
@@ -462,7 +549,7 @@ export default function ProjectContent({ project }: { project: Project }) {
                 width={0}
                 height={0}
                 sizes="(max-width: 768px) 100vw, 60vw"
-                className="w-[75vw] h-auto mx-auto block"
+                className="w-[75vw] h-auto mx-auto block shadow-[0_2px_20px_rgba(0,0,0,0.08)]"
                 priority
               />
             </motion.div>
@@ -530,12 +617,30 @@ export default function ProjectContent({ project }: { project: Project }) {
                       className="w-full h-auto"
                     />
                   </div>
+                ) : project.challengeImages?.[0] ? (
+                  <Image
+                    src={project.challengeImages[0]}
+                    alt="Challenge wireframe 1"
+                    width={0}
+                    height={0}
+                    sizes="(max-width: 640px) 100vw, 50vw"
+                    className="w-full h-auto"
+                  />
                 ) : project.challengeLeftWidget ? (
                   <Widget name={project.challengeLeftWidget} />
                 ) : (
                   <PlaceholderImage label="Research Photo" />
                 )}
-                {project.challengeRightWidget ? (
+                {project.challengeImages?.[1] ? (
+                  <Image
+                    src={project.challengeImages[1]}
+                    alt="Challenge wireframe 2"
+                    width={0}
+                    height={0}
+                    sizes="(max-width: 640px) 100vw, 50vw"
+                    className="w-full h-auto"
+                  />
+                ) : project.challengeRightWidget ? (
                   <Widget name={project.challengeRightWidget} />
                 ) : (
                   <PlaceholderImage label="Whiteboard Session" />
@@ -563,6 +668,20 @@ export default function ProjectContent({ project }: { project: Project }) {
 
             {project.processWidget ? (
               <Widget name={project.processWidget} />
+            ) : project.processImages ? (
+              <div className="flex flex-col gap-8">
+                {project.processImages.map((src, i) => (
+                  <Image
+                    key={i}
+                    src={src}
+                    alt={`Process ${i + 1}`}
+                    width={0}
+                    height={0}
+                    sizes="(max-width: 768px) 100vw, 60vw"
+                    className="w-[75vw] h-auto mx-auto block shadow-[0_2px_20px_rgba(0,0,0,0.08)]"
+                  />
+                ))}
+              </div>
             ) : (
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 {[
@@ -618,15 +737,15 @@ export default function ProjectContent({ project }: { project: Project }) {
           )}
 
           {/* Final design images */}
-          <motion.div
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.7 }}
-            className="px-6 md:px-12 py-8 border-b border-black/10 flex flex-col items-center gap-6"
-          >
-            {project.finalImages && project.finalImages.length > 0 ? (
-              project.finalImages.map((src, i) => (
+          {project.finalImages && project.finalImages.length > 0 && (
+            <motion.div
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.7 }}
+              className="px-6 md:px-12 py-8 border-b border-black/10 flex flex-col items-center gap-6"
+            >
+              {project.finalImages.map((src, i) => (
                 <Image
                   key={i}
                   src={src}
@@ -636,11 +755,9 @@ export default function ProjectContent({ project }: { project: Project }) {
                   sizes="80vw"
                   className="w-[80vw] h-auto block"
                 />
-              ))
-            ) : (
-              <PlaceholderImage label="Final Design — Full Width" tall />
-            )}
-          </motion.div>
+              ))}
+            </motion.div>
+          )}
 
           {/* Outcome */}
           <motion.section
@@ -654,16 +771,9 @@ export default function ProjectContent({ project }: { project: Project }) {
               <h2 className="text-3xl font-bold tracking-[-.03em] uppercase text-black pt-1">
                 Outcome
               </h2>
-              <div>
-                <p className="text-base md:text-lg leading-relaxed text-black/65 mb-12">
-                  {project.outcome}
-                </p>
-                <div className="pt-8 border-t border-black/10">
-                  <p className="text-sm tracking-widest uppercase text-black/30 mb-2">
-                    Next Project
-                  </p>
-                </div>
-              </div>
+              <p className="text-base md:text-lg leading-relaxed text-black/65">
+                {project.outcome}
+              </p>
             </div>
           </motion.section>
         </>
