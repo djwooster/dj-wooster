@@ -100,6 +100,57 @@ export interface Project {
 
 export const projects: Project[] = [
   {
+    slug: "riverside-sel",
+    title: "SEL Curriculum Integration",
+    year: "2026",
+    client: "Riverside Insights",
+    tags: [
+      "Rapid Prototyping",
+      "Product Integration",
+      "User Testing",
+      "Interaction Design",
+      "Information Architecture",
+    ],
+    tldr: "Riverside acquired an SEL curriculum company and needed the entire product integrated into their existing enterprise assessment platform — fast. I led design from blank canvas to shipped product in weeks, using browser-based prototypes built with HTML, CSS, React, and Claude Code to align stakeholders, test with educators, and hand off to engineering with minimal ambiguity.",
+    context: {
+      role: "Staff Product Designer",
+      timeline: "2026",
+      team: "Product Owner · Product Manager · Engineering",
+      scope: "Full product integration · Rapid prototyping · User testing",
+    },
+    businessGoals: [
+      {
+        number: "01",
+        title: "Ship before back-to-school",
+        description:
+          "A hard deadline with real consequences. April kickoff gave us roughly four months to design, test, and ship a complete new product surface before the academic year began.",
+      },
+      {
+        number: "02",
+        title: "Integrate without disrupting what works",
+        description:
+          "The existing assessment workflow had established patterns educators relied on daily. The curriculum addition had to slot in without introducing friction or relearning.",
+      },
+      {
+        number: "03",
+        title: "Lay groundwork for dynamic recommendations",
+        description:
+          "Phase one was integration. The long-term goal was a system that surfaces the right curriculum based on each student's assessment scores — turning data into action.",
+      },
+    ],
+    overview:
+      "Riverside Insights acquired a company with a social-emotional learning curriculum library and needed it integrated into their existing assessment platform. The existing experience was built around a single core workflow — educators conduct assessments of students and track results over time. My job was to make curriculum feel native to that platform, not bolted on, and lay the groundwork for a future state where curriculum is dynamically recommended based on each student's assessment scores.",
+    challenge:
+      "The existing platform had no design language for curriculum. It was built around one loop — assess, review results, repeat — and curriculum is a fundamentally different kind of content: browseable, teachable, and organized by topic rather than by student. There was no framework for how it should live in the platform, no prior patterns to extend, and no time to build slowly. I needed to define the structure from scratch without disrupting the assessment experience educators already relied on.",
+    process:
+      "I built browser-based prototypes using HTML, CSS, and React with Claude Code to explore and communicate directions quickly. Prototypes served three distinct purposes throughout the project: alignment artifacts I shared with the product owner and manager to get decisions made fast, test stimuli I put in front of educators to validate which models actually worked, and reference implementations that gave engineering a working, interactive spec rather than a static handoff. Testing multiple concepts surfaced which navigation structures felt familiar and which curriculum layouts were usable in a real classroom context.",
+    outcome:
+      "Shipped a fully integrated curriculum product in weeks — a complete new product surface within a mature enterprise platform, designed and tested from scratch. The integration established the design patterns that will power the next phase: dynamic curriculum recommendations tied directly to each student's assessment scores, turning assessment data from a report into an action plan.",
+    processImage1Label: "Existing Experience",
+    processImage2Label: "Prototype",
+    thumbnail: "/river-thumb.jpg",
+  },
+  {
     slug: "inbound-health",
     title: "Hospital at Home",
     year: "2023–2026",
