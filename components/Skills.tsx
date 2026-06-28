@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { motion } from "framer-motion";
 import { EASE } from "@/lib/motion";
 
@@ -32,7 +33,7 @@ const skills = [
     number: "05",
     title: "Prototyping",
     description:
-      "High-fidelity prototypes for testing assumptions, validating flows, and aligning stakeholders.",
+      "High-fidelity, browser-based prototypes built in HTML, CSS, and React — test-ready for users, interactive enough to align stakeholders, detailed enough for engineers to build from directly.",
   },
   {
     number: "06",
@@ -111,6 +112,38 @@ export default function Skills() {
           </motion.div>
         ))}
       </div>
+
+      {/* Claude Code / AI callout */}
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: "-40px" }}
+        transition={{ duration: 0.7, ease: EASE }}
+        className="mt-8 p-8 md:p-12 flex flex-col md:flex-row md:items-center gap-6 md:gap-20"
+        style={{ backgroundColor: "#181819" }}
+      >
+        <div className="shrink-0">
+          <Image
+            src="/clyde.png"
+            alt="Claude Code"
+            width={48}
+            height={48}
+            className="mb-4"
+          />
+          <h3 className="text-2xl md:text-3xl font-black tracking-tight text-white leading-tight">
+            I prototype in code.
+            <br />
+            Not just Figma.
+          </h3>
+        </div>
+        <p className="text-sm md:text-base text-white/55 leading-relaxed max-w-xl">
+          I use Claude Code every day to build browser-based prototypes in HTML,
+          CSS, and React. They&apos;re polished enough to test with real users,
+          interactive enough to align stakeholders on direction, and specific
+          enough for engineers to build from without a revision cycle to
+          interpret what the static spec meant.
+        </p>
+      </motion.div>
     </section>
   );
 }

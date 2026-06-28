@@ -57,6 +57,13 @@ export default function About() {
               language of engineering, and stay grounded in what real users
               actually need.
             </p>
+            <p>
+              I build browser-based prototypes directly in HTML, CSS, and React
+              using Claude Code — every day. What used to require a separate
+              developer pass is now part of my standard workflow: interactive
+              references that users can actually test, stakeholders can react to,
+              and engineers can build from without ambiguity.
+            </p>
           </div>
 
           {/* Stats */}
