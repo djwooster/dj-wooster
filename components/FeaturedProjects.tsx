@@ -18,12 +18,10 @@ export default function FeaturedProjects() {
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
         {projects.map((project, i) => {
           const thumbnail = (
-            <motion.div
-              className={`w-full h-[60vw] md:h-[28vw] overflow-hidden relative ${
-                project.comingSoon ? "bg-neutral-900" : "bg-black/4"
+            <div
+              className={`w-full h-[60vw] md:h-[28vw] overflow-hidden relative transition-transform duration-500 ease-out ${
+                project.comingSoon ? "bg-neutral-900" : "bg-black/4 group-hover:scale-[0.99]"
               }`}
-              whileHover={project.comingSoon ? undefined : { scale: 0.99 }}
-              transition={{ duration: 0.5, ease: EASE }}
             >
               {project.comingSoon ? (
                 <>
@@ -78,19 +76,22 @@ export default function FeaturedProjects() {
                   </span>
                 </div>
               )}
-            </motion.div>
+            </div>
           );
 
           const meta = (
             <div className="flex items-start justify-between gap-4">
-              <div>
-                <h3
-                  className={`text-xl md:text-2xl font-black tracking-tight leading-tight transition-transform duration-300 ease-out ${
-                    !project.comingSoon ? "group-hover:translate-x-2" : ""
-                  }`}
-                >
+              <div
+                className={`transition-transform duration-300 ease-out ${
+                  !project.comingSoon ? "group-hover:translate-x-2" : ""
+                }`}
+              >
+                <h3 className="text-xl md:text-2xl font-black tracking-tight leading-tight">
                   {project.title}
                 </h3>
+                <p className="mt-1 text-base text-black/35">
+                  {project.client}
+                </p>
               </div>
               {!project.comingSoon && (
                 <span className="text-xl text-black/20 group-hover:text-black group-hover:translate-x-2 transition-all duration-300 shrink-0 mt-1">
