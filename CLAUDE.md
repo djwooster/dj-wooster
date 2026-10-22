@@ -1,5 +1,14 @@
 # DJ Wooster Portfolio — Claude Instructions
 
+## Themes
+This repo holds multiple site "themes". The active one lives at the root (`app/`, `components/`, `lib/`, `CLAUDE.md`); inactive ones are parked intact in `themes/<name>/`.
+- `npm run theme` — show active theme
+- `npm run theme <name>` — switch (e.g. `npm run theme brand`)
+- `public/`, `package.json`, and configs are shared across themes.
+- Never edit files inside `themes/` unless asked — they're the parked themes.
+
+---
+
 ## Project Overview
 UX/UI portfolio for DJ Wooster. Built for recruiters — short, imagery-forward, and outcome-led. Creative digital agency aesthetic.
 
