@@ -153,6 +153,17 @@
   --radius-panel: 16px;
 
   --ease-out-soft: cubic-bezier(0.22, 1, 0.36, 1);
+
+  --animate-dot-ripple: dot-ripple 6s ease-in-out infinite;
+  @keyframes dot-ripple {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.35; }
+  }
+
+  --animate-caret: caret 1s steps(1) infinite;
+  @keyframes caret {
+    50% { opacity: 0; }
+  }
 }
 
 /* Small uppercase mono label: 12px, 0.12em tracking */
@@ -176,6 +187,10 @@
   html {
     scroll-behavior: smooth;
     -webkit-text-size-adjust: 100%;
+  }
+  /* Anchored sections land below the sticky header */
+  section[id] {
+    scroll-margin-top: 4rem;
   }
   body {
     background: var(--bg);

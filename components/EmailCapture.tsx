@@ -153,7 +153,7 @@ export default function EmailCapture({
   )
 }
 
-function Spinner() {
+export function Spinner() {
   return (
     <span className="flex w-8 justify-center" aria-label="Submitting">
       <span className="size-4 animate-spin rounded-full border-[1.5px] border-white/30 border-t-white" />

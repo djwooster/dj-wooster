@@ -2,8 +2,7 @@
 
 import Link from "next/link"
 import { usePathname } from "next/navigation"
-import { footerNav, isExternal, pageCode, site, social } from "@/lib/site"
-import EmailCapture from "@/components/EmailCapture"
+import { footerNav, isExternal, pageCode, priceNote, site, social } from "@/lib/site"
 import { Container, Crosshair } from "@/components/ui/primitives"
 
 export default function Footer() {
@@ -15,22 +14,22 @@ export default function Footer() {
         <Crosshair className="absolute top-0 left-0 -translate-x-1/2 -translate-y-1/2 max-sm:left-4" />
         <Crosshair className="absolute top-0 right-0 translate-x-1/2 -translate-y-1/2 max-sm:right-4" />
 
-        <EmailCapture
-          variant="full"
-          source={`footer:${pathname}`}
-          tag="newsletter"
-          headline="Notes on building software."
-          headlineRest="One email when there's something worth sharing."
-          cta="Subscribe"
-        />
+        <div className="flex flex-col gap-3">
+          <Link href="/" className="label-mono w-fit text-14 tracking-[0.16em] text-ink">
+            {site.name}
+          </Link>
+          <p className="max-w-sm text-14 text-ink-2">
+            Custom websites, web apps and iOS apps, designed and engineered end to end. {priceNote}.
+          </p>
+        </div>
 
-        <div className="mt-16 grid grid-cols-2 gap-10 border-t border-line pt-10 sm:grid-cols-4">
+        <div className="mt-12 grid grid-cols-2 gap-10 border-t border-line pt-10 sm:grid-cols-4">
           {footerNav.map((group) => (
             <div key={group.title} className="flex flex-col gap-4">
               <span className="label-mono text-ink-2">{group.title}</span>
               <ul className="flex flex-col gap-2">
                 {group.links.map((link) => (
-                  <li key={link.href}>
+                  <li key={link.label}>
                     <Link href={link.href} className="text-14 text-ink transition-colors duration-200 hover:text-ink-2">
                       {link.label}
                     </Link>

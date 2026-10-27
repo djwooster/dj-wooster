@@ -12,7 +12,7 @@ const doto = Doto({ variable: "--font-doto", subsets: ["latin"], weight: ["700",
 
 export const metadata: Metadata = {
   metadataBase: new URL(site.url),
-  title: { default: "DJ Wooster — Software, built with intention", template: "%s — DJ Wooster" },
+  title: { default: "DJ Wooster — Custom websites and apps, shipped in weeks", template: "%s — DJ Wooster" },
   description: site.description,
 }
 

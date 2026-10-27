@@ -1,4 +1,4 @@
-// Launching a course is a config change: flip `status` to "open" and set `checkoutUrl`.
+// Launching a course is a config change: flip `status` to "open" and set `checkoutUrl` (a Stripe payment link).
 export type CourseStatus = "waitlist" | "open" | "closed"
 
 export type SignupTag =
@@ -17,6 +17,12 @@ export interface Course {
   checkoutUrl?: string
   tag: SignupTag
   label?: string
+  /** Launch price with a real end date; `price` is the regular price after it */
+  earlyBird?: { price: number; until: string }
+  /** Stripe payment link for the installment option, shown under the main CTA */
+  paymentPlan?: { label: string; url?: string }
+  /** Self-paced lessons plus live support, shown on the landing pages */
+  format?: { liveCalls: string }
 }
 
 export const courses: Course[] = [
@@ -28,6 +34,9 @@ export const courses: Course[] = [
     status: "waitlist",
     checkoutUrl: undefined,
     tag: "waitlist-ship-your-app",
+    earlyBird: { price: 249, until: "[TODO: early-bird end date]" },
+    paymentPlan: { label: "[TODO: or 3 payments of $X]" },
+    format: { liveCalls: "3× a week" },
   },
   {
     slug: "claude-code-for-ux-designers",

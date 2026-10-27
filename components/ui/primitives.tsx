@@ -90,8 +90,8 @@ export function SectionLabel({
 const headingSizes = {
   sm: "text-20 md:text-28",
   md: "text-28 md:text-40",
-  lg: "text-40 md:text-64",
-  xl: "text-40 sm:text-64 lg:text-96",
+  lg: "text-28 md:text-40",
+  xl: "text-40 md:text-[3rem]",
 }
 
 export function TwoToneHeading({
@@ -101,7 +101,7 @@ export function TwoToneHeading({
   size = "md",
   className,
 }: {
-  as?: "h1" | "h2" | "h3"
+  as?: "h1" | "h2" | "h3" | "p"
   lead: string
   rest?: string
   size?: keyof typeof headingSizes
@@ -145,11 +145,12 @@ export function Stat({
 
 /* ─── StatusChip: LIVE / IN REVIEW / BETA ────────────────────────────────── */
 
-export type ChipStatus = "live" | "in-review" | "beta" | "waitlist" | "open" | "closed" | "soon"
+export type ChipStatus = "live" | "in-review" | "in-build" | "beta" | "waitlist" | "open" | "closed" | "soon"
 
 const chipLabel: Record<ChipStatus, string> = {
   live: "Live",
   "in-review": "In review",
+  "in-build": "In build",
   beta: "Beta",
   waitlist: "Waitlist",
   open: "Enrolling",
@@ -162,7 +163,7 @@ export function StatusChip({ status, note, className }: { status: ChipStatus; no
   const dot =
     status === "live" || status === "open" ? (
       <span className="size-1.5 rounded-full bg-positive" />
-    ) : status === "in-review" || status === "waitlist" ? (
+    ) : status === "in-review" || status === "in-build" || status === "waitlist" ? (
       <span className="relative flex size-1.5">
         <span className="absolute inset-0 animate-ping rounded-full bg-ink-2 opacity-60" />
         <span className="relative size-1.5 rounded-full bg-ink-2" />
@@ -200,5 +201,26 @@ export function Card({
     <div className={cn("rounded-card border border-line", inverse ? "inverse" : "bg-surface", className)}>
       {children}
     </div>
+  )
+}
+
+/* ─── DisplayText: dot-matrix line with true round periods ───────────────── */
+
+export function DisplayText({ text, className }: { text: string; className?: string }) {
+  const parts = text.split(".")
+  return (
+    <span className={cn("font-display font-bold", className)}>
+      <span aria-hidden>
+        {parts.map((part, i) => (
+          <span key={i}>
+            {part}
+            {i < parts.length - 1 && (
+              <span className="ml-[0.06em] inline-block size-[0.13em] rounded-full bg-current align-baseline" />
+            )}
+          </span>
+        ))}
+      </span>
+      <span className="sr-only">{text}</span>
+    </span>
   )
 }

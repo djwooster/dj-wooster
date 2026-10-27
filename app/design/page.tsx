@@ -6,6 +6,7 @@ import {
   Card,
   Container,
   Crosshair,
+  DisplayText,
   Section,
   SectionLabel,
   Stat,
@@ -202,8 +203,8 @@ export default function DesignPage() {
       {/* 02 · Type */}
       <Group number="02" label="Type" title="Three faces, one voice." rest="Geist for reading, Geist Mono for data, Doto for rare moments.">
         <Specimen name="Display · Doto" note="Hero moments and big stats only" stack>
-          <p className="font-display text-40 leading-none font-bold tracking-tight sm:text-64 lg:text-96">
-            DESIGN. BUILD. SHIP.
+          <p className="text-40 leading-none tracking-tight sm:text-64 lg:text-96">
+            <DisplayText text="DESIGN. BUILD. SHIP." />
           </p>
         </Specimen>
 

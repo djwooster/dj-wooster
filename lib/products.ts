@@ -1,5 +1,5 @@
 export type ProductStatus = "live" | "in-review" | "beta"
-export type PictogramKind = "focusmode" | "re-iq" | "sourceiq"
+export type PictogramKind = "focusmode" | "re-iq" | "sourceiq" | "coast-gallery"
 
 export interface Product {
   slug: string

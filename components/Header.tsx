@@ -4,7 +4,7 @@ import Link from "next/link"
 import { usePathname } from "next/navigation"
 import { useState } from "react"
 import { AnimatePresence, motion } from "framer-motion"
-import { nav, primaryCta } from "@/lib/site"
+import { isLanding, nav, primaryCta, startHref } from "@/lib/site"
 import { SPRING } from "@/lib/motion"
 import Button from "@/components/ui/Button"
 import ThemeToggle from "@/components/ThemeToggle"
@@ -18,6 +18,27 @@ export default function Header() {
   const open = openOn === pathname
 
   const isActive = (href: string) => pathname === href || pathname.startsWith(`${href}/`)
+
+  // Landing pages: wordmark, theme and one CTA that jumps to the page's own offer
+  if (isLanding(pathname)) {
+    return (
+      <header className="sticky top-0 z-40 border-b border-line bg-bg">
+        <Container className="flex h-16 items-center justify-between gap-6">
+          <Link href="/" className="label-mono text-14 tracking-[0.16em] text-ink" aria-label="DJ Wooster — home">
+            DJ Wooster
+          </Link>
+          <div className="flex items-center gap-3">
+            <span className="hidden sm:block">
+              <ThemeToggle />
+            </span>
+            <Button href="#join" variant="solid" size="sm" trackAs={`header-join:${pathname}`}>
+              Get access
+            </Button>
+          </div>
+        </Container>
+      </header>
+    )
+  }
 
   return (
     <header className="sticky top-0 z-40 border-b border-line bg-bg">
@@ -44,7 +65,7 @@ export default function Header() {
 
         <div className="hidden items-center gap-3 md:flex">
           <ThemeToggle />
-          <Button href={primaryCta.href} variant="solid" size="sm" trackAs="header-waitlist">
+          <Button href={startHref(`header:${pathname}`)} variant="solid" size="sm" trackAs="header-start">
             {primaryCta.label}
           </Button>
         </div>
@@ -103,7 +124,7 @@ export default function Header() {
               </nav>
               <div className="flex items-center justify-between gap-4">
                 <ThemeToggle />
-                <Button href={primaryCta.href} variant="solid" size="md" trackAs="mobile-menu-waitlist">
+                <Button href={startHref(`menu:${pathname}`)} variant="solid" size="md" trackAs="menu-start">
                   {primaryCta.label}
                 </Button>
               </div>

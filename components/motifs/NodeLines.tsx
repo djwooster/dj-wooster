@@ -15,6 +15,8 @@ export interface DiagramNode {
   /** Where the pill sits relative to the node */
   labelSide?: "top" | "bottom" | "left" | "right"
   accent?: boolean
+  /** Rendered centered on the node in place of the dot */
+  content?: React.ReactNode
 }
 
 export interface DiagramEdge {
@@ -68,7 +70,7 @@ export default function NodeLines({
             />
           ))}
         </g>
-        {nodes.map((n, i) => (
+        {nodes.filter((n) => !n.content).map((n, i) => (
           <motion.circle
             key={n.id}
             cx={n.x}
@@ -87,6 +89,22 @@ export default function NodeLines({
       </svg>
 
       {nodes
+        .filter((n) => n.content)
+        .map((n, i) => (
+          <motion.div
+            key={n.id}
+            className="absolute -translate-x-1/2 -translate-y-1/2"
+            style={{ left: `${(n.x / width) * 100}%`, top: `${(n.y / height) * 100}%` }}
+            initial={{ opacity: 0, scale: 0.94 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true, margin: "-60px" }}
+            transition={{ type: "spring", stiffness: 380, damping: 30, delay: 0.45 + i * 0.08 }}
+          >
+            {n.content}
+          </motion.div>
+        ))}
+
+      {nodes
         .filter((n) => n.label)
         .map((n, i) => (
           <motion.span
@@ -99,7 +117,7 @@ export default function NodeLines({
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             viewport={{ once: true, margin: "-60px" }}
-            transition={{ duration: 0.3, delay: 0.5 + i * 0.08 }}
+            transition={{ duration: 0.3, delay: 0.35 + i * 0.06 }}
           >
             {n.label}
           </motion.span>

@@ -26,6 +26,7 @@ export default function DotField({
   gap = 10,
   focus = [0.7, 0.35],
   seed = 7,
+  ripple = false,
   className,
 }: {
   variant?: Variant
@@ -35,6 +36,8 @@ export default function DotField({
   /** Focal point as fractions of width/height (halftone + cloud) */
   focus?: [number, number]
   seed?: number
+  /** Gentle opacity wave outward from the focus. Hero only; off under reduced motion */
+  ripple?: boolean
   className?: string
 }) {
   const w = cols * gap
@@ -81,7 +84,14 @@ export default function DotField({
     >
       <g fill="currentColor">
         {dots.map((d, i) => (
-          <circle key={i} cx={round(d.x)} cy={round(d.y)} r={round(d.r)} />
+          <circle
+            key={i}
+            cx={round(d.x)}
+            cy={round(d.y)}
+            r={round(d.r)}
+            className={ripple ? "animate-dot-ripple" : undefined}
+            style={ripple ? { animationDelay: `${round((Math.hypot(d.x - fx, d.y - fy) / reach) * 4)}s` } : undefined}
+          />
         ))}
       </g>
     </svg>

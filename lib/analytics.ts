@@ -1,5 +1,5 @@
 // Single place for analytics events. Vercel Analytics gets wired in here (step 7).
-export type AnalyticsEvent = "signup" | "cta_click"
+export type AnalyticsEvent = "signup" | "cta_click" | "inquiry"
 
 export function track(event: AnalyticsEvent, props: Record<string, string | number | boolean | undefined>) {
   // TODO: replace with `track` from @vercel/analytics
