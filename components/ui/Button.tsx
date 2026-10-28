@@ -1,93 +1,64 @@
-"use client"
+import * as React from "react"
+import { cva, type VariantProps } from "class-variance-authority"
+import { Slot } from "radix-ui"
 
-import Link from "next/link"
-import { track } from "@/lib/analytics"
-import { isExternal } from "@/lib/site"
 import { cn } from "@/lib/utils"
 
-// primary = the accent moment; solid = ink fill for persistent CTAs (header) so the accent stays rare
-type Variant = "primary" | "solid" | "secondary" | "ghost"
-type Size = "sm" | "md" | "lg"
-
-const variants: Record<Variant, string> = {
-  primary: "bg-accent text-white hover:brightness-110",
-  solid: "bg-ink text-bg hover:opacity-85",
-  secondary: "border border-line bg-surface text-ink hover:border-ink-3",
-  ghost: "text-ink hover:bg-ink/5",
-}
-
-const sizes: Record<Size, string> = {
-  sm: "h-8 px-3.5 text-14 gap-1.5",
-  md: "h-10 px-5 text-14 gap-2",
-  lg: "h-12 px-6 text-16 gap-2",
-}
-
-type Props = {
-  variant?: Variant
-  size?: Size
-  arrow?: boolean
-  className?: string
-  children: React.ReactNode
-  /** Analytics label — every CTA click is tracked */
-  trackAs?: string
-} & (
-  | ({ href: string } & Omit<React.AnchorHTMLAttributes<HTMLAnchorElement>, "href">)
-  | ({ href?: undefined } & React.ButtonHTMLAttributes<HTMLButtonElement>)
+const buttonVariants = cva(
+  "inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-all disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size-4 shrink-0 [&_svg]:shrink-0 outline-none focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive",
+  {
+    variants: {
+      variant: {
+        default: "bg-primary text-primary-foreground hover:bg-primary/90",
+        destructive:
+          "bg-destructive text-white hover:bg-destructive/90 focus-visible:ring-destructive/20 dark:focus-visible:ring-destructive/40 dark:bg-destructive/60",
+        outline:
+          "border bg-background shadow-xs hover:bg-accent hover:text-accent-foreground dark:bg-input/30 dark:border-input dark:hover:bg-input/50",
+        secondary:
+          "bg-secondary text-secondary-foreground hover:bg-secondary/80",
+        ghost:
+          "hover:bg-accent hover:text-accent-foreground dark:hover:bg-accent/50",
+        link: "text-primary underline-offset-4 hover:underline",
+      },
+      size: {
+        default: "h-9 px-4 py-2 has-[>svg]:px-3",
+        xs: "h-6 gap-1 rounded-md px-2 text-xs has-[>svg]:px-1.5 [&_svg:not([class*='size-'])]:size-3",
+        sm: "h-8 rounded-md gap-1.5 px-3 has-[>svg]:px-2.5",
+        lg: "h-10 rounded-md px-6 has-[>svg]:px-4",
+        icon: "size-9",
+        "icon-xs": "size-6 rounded-md [&_svg:not([class*='size-'])]:size-3",
+        "icon-sm": "size-8",
+        "icon-lg": "size-10",
+      },
+    },
+    defaultVariants: {
+      variant: "default",
+      size: "default",
+    },
+  }
 )
 
-export function buttonClasses(variant: Variant = "primary", size: Size = "md", className?: string) {
-  return cn(
-    "inline-flex shrink-0 select-none items-center justify-center rounded-full font-medium whitespace-nowrap",
-    "transition-[transform,filter,opacity,background-color,border-color] duration-200 ease-out-soft active:scale-[0.97]",
-    "disabled:pointer-events-none disabled:opacity-50",
-    variants[variant],
-    sizes[size],
-    className,
-  )
-}
+function Button({
+  className,
+  variant = "default",
+  size = "default",
+  asChild = false,
+  ...props
+}: React.ComponentProps<"button"> &
+  VariantProps<typeof buttonVariants> & {
+    asChild?: boolean
+  }) {
+  const Comp = asChild ? Slot.Root : "button"
 
-export function Arrow({ className }: { className?: string }) {
   return (
-    <svg viewBox="0 0 16 16" fill="none" aria-hidden className={cn("size-3.5", className)}>
-      <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-    </svg>
+    <Comp
+      data-slot="button"
+      data-variant={variant}
+      data-size={size}
+      className={cn(buttonVariants({ variant, size, className }))}
+      {...props}
+    />
   )
 }
 
-export default function Button(props: Props) {
-  const { variant = "primary", size = "md", arrow, className, children, trackAs, ...rest } = props
-  const classes = buttonClasses(variant, size, cn(arrow && "group", className))
-  const content = (
-    <>
-      {children}
-      {arrow && <Arrow className="transition-transform duration-200 ease-out-soft group-hover:translate-x-0.5" />}
-    </>
-  )
-
-  if (rest.href !== undefined) {
-    const { href, onClick, ...anchor } = rest as { href: string } & React.AnchorHTMLAttributes<HTMLAnchorElement>
-    const handleClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
-      track("cta_click", { label: trackAs ?? String(children), href, page: location.pathname })
-      onClick?.(e)
-    }
-    if (isExternal(href)) {
-      return (
-        <a href={href} target="_blank" rel="noreferrer" className={classes} onClick={handleClick} {...anchor}>
-          {content}
-        </a>
-      )
-    }
-    return (
-      <Link href={href} className={classes} onClick={handleClick} {...anchor}>
-        {content}
-      </Link>
-    )
-  }
-
-  const button = rest as React.ButtonHTMLAttributes<HTMLButtonElement>
-  return (
-    <button type="button" className={classes} {...button}>
-      {content}
-    </button>
-  )
-}
+export { Button, buttonVariants }

@@ -1,32 +1,138 @@
-# DJ Wooster — Brand Site — Claude Instructions
+# DJ Wooster Portfolio — Claude Instructions
 
 ## Themes
 This repo holds multiple site "themes". The active one lives at the root (`app/`, `components/`, `lib/`, `CLAUDE.md`); inactive ones are parked intact in `themes/<name>/`.
 - `npm run theme` — show active theme
-- `npm run theme <name>` — switch (e.g. `npm run theme portfolio` restores the product design portfolio)
-- `public/`, `package.json`, and configs are shared across themes. Put brand-only assets in `public/brand/`.
+- `npm run theme <name>` — switch (e.g. `npm run theme brand`)
+- `public/`, `package.json`, and configs are shared across themes.
 - Never edit files inside `themes/` unless asked — they're the parked themes.
 
+---
+
 ## Project Overview
-DJ Wooster designs and builds custom websites, web apps and iOS apps for established businesses (from $15K). DJ's own live products (FocusMode, RE-IQ, SourceIQ) are the proof. Courses, YouTube and Skool are secondary and live off the homepage.
-**Strategy (wins over everything else):** `docs/site-brief.md` — the homepage turns leads into "Start a project" inquiries for custom websites and apps from $15K. Amendments from DJ (Oct 26): traffic also comes from ads, not only warm leads, so the homepage must sell to strangers too; the work should show range (any web or mobile app), at expert level.
-**Design spec:** `docs/brand-build-prompt.md` — voice, tokens, motifs and components still apply. Its goals, site map and funnels are superseded by the brief.
+UX/UI portfolio for DJ Wooster. Built for recruiters — short, imagery-forward, and outcome-led. Creative digital agency aesthetic.
 
 **Stack:** Next.js (App Router), TypeScript, Tailwind CSS v4, Framer Motion
-**Fonts:** Geist (sans), Geist Mono (labels, metadata, all numbers), Doto (dot-matrix display, rare hero moments only)
-**Email:** Resend, configured later — `EmailCapture` posts to a stub `/api/subscribe` until then
-**Analytics:** Vercel Analytics, custom events on every signup and CTA click
+**Font:** Geist
+**Colors:** Pure black & white only, no dark mode
+**Style:** 0px border radius everywhere, large bold type, editorial feel
 
-## Decisions (override the spec where they differ)
-- **Corners:** iOS-style — 12–16px on cards and panels (not the spec's 8px), fully rounded pills for labels and buttons
-- **Product visuals:** coded, animated React recreations of each product's key screens on the homepage and in feature explainers; real screenshots on product pages
-- **UI quality bar:** everything looks production-grade, even explainer animations — real UI, not illustrations
-- **Motion:** iOS-quality spring animations (Framer Motion springs), product-demo style; respect `prefers-reduced-motion`
-- **Tactile object:** the Teenage Engineering-style FocusMode device lives on `/products/focusmode` only
-- **Hero:** headline option C ("Built for your business. *Shipped in weeks.*"). The visual is `HeroBuild`: a typed client need springs open into the finished product (browser or phone), which then does its job. It cycles website (Coast Gallery), web app (RE-IQ), iOS app (FocusMode). No "AI generates it" framing, and no money or results claims
-- **Selected work:** one section per project (highlights on one side, coded demo on the other, sides alternate), data in `lib/work.ts`. Client work leads. Coast Gallery (client, approved to show) is recreated with coded stand-in art; its real site uses other artists' images and invented works, so never screenshot it
-- **Old design work** (the portfolio case studies: MSK, Inbound Health, National Grid, etc.) stays off this site. It lives only in `themes/portfolio/`
-- **Inquiries:** every Start a project link goes through `startHref(from)` so `/start` records the source; form choices live in `lib/inquiry.ts`
-- **Influences:** Teenage Engineering, Dieter Rams, Linear, Vercel, Supabase, Notion
-- **Ad landing pages** (e.g. `/vibe-code-a-mobile-app` for the Ship Your App cohort): noindex, listed in `landingRoutes` in `lib/site.ts` so the header drops its nav. CTAs go through `CourseCta`, which follows the course config (waitlist until `status: "open"` + `checkoutUrl`, a Stripe payment link). Ship Your App is self-paced with live calls 3× a week; $495, $249 early bird, payment plan available. Goal: 1,000 sales by Dec 31, 2026. Its animations (`components/landing/`) recreate real UI as closely as possible (Claude Code terminal, iPhone, App Store, call app) in those products' own palettes
-- Placeholder copy is always marked `[TODO: …]`
+---
+
+## Architecture
+
+- No `src/` directory — components, lib, app all at root
+- `app/layout.tsx` — wraps everything with `<Navigation />`
+- `app/page.tsx` — Home: Hero, FeaturedProjects, Marquee, Skills, Footer
+- `app/projects/[slug]/page.tsx` — SSG project pages via `generateStaticParams`
+- `lib/projects.ts` — **single source of truth** for all project data and types
+- `lib/motion.ts` — shared `EASE` constant (`[number, number, number, number]`) required for Framer Motion TypeScript compatibility — never use raw `number[]`
+
+---
+
+## Design Conventions
+
+### Typography scale
+- **Hero titles:** `text-[12vw] md:text-[6vw] font-black tracking-tight`
+- **Section headings:** `text-3xl font-bold tracking-[-.03em] uppercase text-black` — used for ALL named sections: Business Goals, Process, What We Heard, Key Insights, What We Tested, Solution, Design System, Outcome, Overview, The Challenge, The Problem, Problem Statement, Root Causes, Qualitative Research, Key Insight. **Never use the small label style (`text-xs tracking-[0.3em] uppercase text-black/35`) for section titles** — reserve that only for sub-labels and metadata.
+- **Act headings:** `text-4xl md:text-5xl font-black tracking-tight leading-none`
+- **Act outcome stats:** `text-3xl font-bold tracking-[-.03em] uppercase text-black`
+- **Body text:** `text-base md:text-lg leading-relaxed text-black/65`
+- **Small uppercase labels:** `text-xs tracking-[0.3em] uppercase text-black/35` — never go below `text-xs`
+- **Nav/footer links:** `text-sm tracking-widest uppercase`
+
+### Borders & surfaces
+- Section dividers: `border-b border-black/10`
+- Cards/artifacts: `border border-black/10 bg-black/[0.02]`
+- Standard section padding: `px-6 md:px-12 py-20`
+
+### TL;DR block (ProjectHero)
+- Sits below the tag pills in the hero section
+- `relative bg-black/[0.02] px-12 py-7` with four corner brackets (not a full border)
+- Corner brackets: `absolute w-8 h-8 border-t-2 border-l-2 border-black/50` (each corner gets its own div)
+
+### Animations
+- All scroll-triggered sections use `sectionVariants` (`opacity: 0→1, y: 40→0, duration: 0.8`)
+- Use `EASE` from `lib/motion.ts` for all cubic bezier easing
+- Viewport margin: `margin: "-80px"`, `once: true`
+
+---
+
+## Data Model (`lib/projects.ts`)
+
+### Project interface — key fields
+All text content fields (`overview`, `challenge`, `process`, `outcome`) are **optional** — omit them for `comingSoon` projects rather than setting to `""`.
+
+```ts
+// Layout selector
+acts?: ProjectAct[]       // if present → acts layout; otherwise → standard layout
+
+// Acts layout fields
+context?: ProjectContext   // role, timeline, team, scope
+problem?: string
+businessGoals?: BusinessGoal[]
+processPhases?: ProcessPhase[]
+researchQuote?: ResearchQuote
+systemsNote?: string
+
+// Standard layout fields
+overview?: string
+challenge?: string
+process?: string
+outcome?: string
+
+// Standard layout widgets (replaces slug-based conditionals)
+challengeWidget?: ProjectWidget          // full-width override for challenge artifacts
+challengeLeftWidget?: ProjectWidget      // left cell in 2-col challenge grid
+challengeRightWidget?: ProjectWidget     // right cell in 2-col challenge grid
+processWidget?: ProjectWidget            // full-width override for process artifacts
+```
+
+### ProjectWidget type
+```ts
+type ProjectWidget =
+  | "heuristicEvaluation"   // MSK — full-width audit table
+  | "constructionPersona"   // Workforce — left cell
+  | "workforceFlowDiagram"  // Workforce — right cell
+  | "workforceWireframes"   // Workforce — full-width process
+```
+To add a new custom component: add its name to `ProjectWidget`, create the component, add a case to the `Widget()` function in `ProjectContent.tsx`, then set the appropriate field in the project data. No slug checks needed.
+
+### ProjectAct interface
+```ts
+number: string
+name: string
+surface: string           // "Salesforce App · Care Liaison" — first part used in act header label
+outcome: string           // punchy result (rendered as section heading)
+decision: string          // one tight paragraph
+researchInsights?: string[]
+iterations?: ActIteration[]   // "What We Tested" section — title, description, image
+solutionText?: string         // "Solution" section — rendered between iterations and images
+images?: string[]             // ordered as you want them displayed (no reversal flag needed)
+```
+
+### ProjectContent rendering logic
+- **Acts layout** (if `project.acts`): hero image → context grid → problem → business goals → process phases → qualitative research → Act 01 → Act 02 → Act 03 → design system → outcome
+- **Standard layout**: overview → hero image (if set) → context grid → challenge → process → prototype gif → final images → outcome
+
+---
+
+## Copy Conventions
+
+- **Lead with outcomes**, not feature descriptions
+- Sentence structure: "I designed X to solve Y, which resulted in Z"
+- **Never** use: "leveraged", "human-centered", "intuitive", "seamless"
+- Problem framing: specific, named, quantified where possible
+- Research: lead with the **insight**, not the methodology
+- Curate images ruthlessly — 1-2 per section max
+
+---
+
+## Projects
+
+| Slug | Title | Layout | Status |
+|---|---|---|---|
+| `inbound-health` | Hospital at Home | Acts | Live on main |
+| `msk-portal` | Oncology Portal Redesign | Standard | Live on main |
+| `msk-data-abstraction` | Patient Data Abstraction | Standard | In progress — copy + images TBD |
+| `national-grid` | National Grid | — | `comingSoon: true` |

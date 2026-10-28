@@ -1,20 +1,19 @@
-import type { Transition } from "framer-motion"
+// Typed cubic bezier for consistent easing across all components
+export const EASE = [0.16, 1, 0.3, 1] as [number, number, number, number]
 
-// Cubic bezier tuple — framer-motion needs the fixed-length type, never number[]
-export const EASE: [number, number, number, number] = [0.22, 1, 0.36, 1]
+// Smooth-scroll to a hash section. If already on '/', scrolls in place.
+// If on another page, stores the target in sessionStorage and navigates home —
+// ScrollRestorer picks it up on arrival and smooth-scrolls after render.
+export function scrollToSection(e: React.MouseEvent, href: string) {
+  if (!href.startsWith("/#")) return
+  e.preventDefault()
+  const id = href.slice(2)
 
-// iOS-feel springs
-export const SPRING: Transition = { type: "spring", stiffness: 420, damping: 34, mass: 0.8 }
-export const SPRING_SOFT: Transition = { type: "spring", stiffness: 260, damping: 30 }
-export const SPRING_SNAPPY: Transition = { type: "spring", stiffness: 600, damping: 38 }
-
-// 150–250ms ease-out for hover and small state changes
-export const FAST: Transition = { duration: 0.2, ease: EASE }
-
-// Scroll reveal
-export const reveal = {
-  initial: { opacity: 0, y: 16 },
-  whileInView: { opacity: 1, y: 0 },
-  viewport: { once: true, margin: "-80px" },
-  transition: { duration: 0.5, ease: EASE },
+  if (window.location.pathname === "/") {
+    const el = document.getElementById(id)
+    if (el) el.scrollIntoView({ behavior: "smooth" })
+  } else {
+    sessionStorage.setItem("scrollTarget", id)
+    window.location.href = "/"
+  }
 }

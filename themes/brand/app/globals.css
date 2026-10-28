@@ -1,0 +1,224 @@
+@import "tailwindcss";
+@source not "../themes";
+@source not "../videos";
+@source not "../docs";
+
+/* Dark mode follows the data-theme attribute set by the theme script in layout.tsx */
+@custom-variant dark (&:where([data-theme="dark"], [data-theme="dark"] *));
+
+/* ─── Color tokens ────────────────────────────────────────────────────────────
+   Values from docs/brand-build-prompt.md. Two deliberate changes for WCAG AA:
+   --accent-text and --positive (light) are darkened slightly.
+   --ink-3 is below AA for text — use it for marks, dot fields and disabled
+   states only. Captions use --ink-2. */
+
+:root,
+[data-theme="light"] {
+  --bg: #f2f1ee;
+  --surface: #fafaf8;
+  --surface-inverse: #111111;
+  --ink: #111111;
+  --ink-2: #6b6a66;
+  --ink-3: #a3a29e;
+  --line: #dcdad5;
+  --accent: #2e74ae;
+  --accent-text: #2a6ca3;
+  --positive: #13733a;
+  --negative: #b42318;
+  --inv-bg: #111111;
+  --inv-surface: #1a1a19;
+  --inv-surface-inverse: #f2f1ee;
+  --inv-ink: #f2f1ee;
+  --inv-ink-2: #8a8a86;
+  --inv-ink-3: #55554f;
+  --inv-line: #2a2a28;
+  --inv-accent-text: #5a9bd4;
+  --inv-positive: #4ade80;
+  --inv-negative: #f87171;
+  --inv-scheme: dark;
+  color-scheme: light;
+}
+
+[data-theme="dark"] {
+  --bg: #000000;
+  --surface: #0b0b0b;
+  --surface-inverse: #f2f1ee;
+  --ink: #f2f1ee;
+  --ink-2: #8a8a86;
+  --ink-3: #55554f;
+  --line: #1f1f1d;
+  --accent: #2e74ae;
+  --accent-text: #5a9bd4;
+  --positive: #4ade80;
+  --negative: #f87171;
+  --inv-bg: #f2f1ee;
+  --inv-surface: #fafaf8;
+  --inv-surface-inverse: #111111;
+  --inv-ink: #111111;
+  --inv-ink-2: #6b6a66;
+  --inv-ink-3: #a3a29e;
+  --inv-line: #dcdad5;
+  --inv-accent-text: #2a6ca3;
+  --inv-positive: #13733a;
+  --inv-negative: #b42318;
+  --inv-scheme: light;
+  color-scheme: dark;
+}
+
+/* No-JS fallback: follow the system setting */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme]) {
+    --bg: #000000;
+    --surface: #0b0b0b;
+    --surface-inverse: #f2f1ee;
+    --ink: #f2f1ee;
+    --ink-2: #8a8a86;
+    --ink-3: #55554f;
+    --line: #1f1f1d;
+    --accent-text: #5a9bd4;
+    --positive: #4ade80;
+    --negative: #f87171;
+    --inv-bg: #f2f1ee;
+    --inv-surface: #fafaf8;
+    --inv-surface-inverse: #111111;
+    --inv-ink: #111111;
+    --inv-ink-2: #6b6a66;
+    --inv-ink-3: #a3a29e;
+    --inv-line: #dcdad5;
+    --inv-accent-text: #2a6ca3;
+    --inv-positive: #13733a;
+    --inv-negative: #b42318;
+    --inv-scheme: light;
+  color-scheme: dark;
+  }
+}
+
+/* Inverse block (alternating black/light cards): swaps to the opposite palette */
+.inverse {
+  --bg: var(--inv-bg);
+  --surface: var(--inv-surface);
+  --surface-inverse: var(--inv-surface-inverse);
+  --ink: var(--inv-ink);
+  --ink-2: var(--inv-ink-2);
+  --ink-3: var(--inv-ink-3);
+  --line: var(--inv-line);
+  --accent-text: var(--inv-accent-text);
+  --positive: var(--inv-positive);
+  --negative: var(--inv-negative);
+  color-scheme: var(--inv-scheme);
+  background-color: var(--bg);
+  color: var(--ink);
+}
+
+@theme inline {
+  --color-bg: var(--bg);
+  --color-surface: var(--surface);
+  --color-surface-inverse: var(--surface-inverse);
+  --color-ink: var(--ink);
+  --color-ink-2: var(--ink-2);
+  --color-ink-3: var(--ink-3);
+  --color-line: var(--line);
+  --color-accent: var(--accent);
+  --color-accent-text: var(--accent-text);
+  --color-positive: var(--positive);
+  --color-negative: var(--negative);
+
+  --font-sans: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-geist-mono), ui-monospace, monospace;
+  --font-display: var(--font-doto), var(--font-geist-mono), monospace;
+}
+
+/* ─── Type scale: 12 / 14 / 16 / 20 / 28 / 40 / 64 / 96 → text-12 … text-96 ─── */
+@theme {
+  --text-12: 0.75rem;
+  --text-12--line-height: 1.5;
+  --text-14: 0.875rem;
+  --text-14--line-height: 1.55;
+  --text-16: 1rem;
+  --text-16--line-height: 1.6;
+  --text-20: 1.25rem;
+  --text-20--line-height: 1.5;
+  --text-28: 1.75rem;
+  --text-28--line-height: 1.2;
+  --text-40: 2.5rem;
+  --text-40--line-height: 1.1;
+  --text-64: 4rem;
+  --text-64--line-height: 1.02;
+  --text-96: 6rem;
+  --text-96--line-height: 0.95;
+
+  /* iOS-style corners: cards 14px, panels 16px, nested elements 10px */
+  --radius-inner: 10px;
+  --radius-card: 14px;
+  --radius-panel: 16px;
+
+  --ease-out-soft: cubic-bezier(0.22, 1, 0.36, 1);
+
+  --animate-dot-ripple: dot-ripple 6s ease-in-out infinite;
+  @keyframes dot-ripple {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.35; }
+  }
+
+  --animate-caret: caret 1s steps(1) infinite;
+  @keyframes caret {
+    50% { opacity: 0; }
+  }
+}
+
+/* Small uppercase mono label: 12px, 0.12em tracking */
+@utility label-mono {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  line-height: 1;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  font-variant-numeric: tabular-nums;
+}
+
+/* Headline: weight 500, tight tracking */
+@utility headline {
+  font-weight: 500;
+  letter-spacing: -0.03em;
+  text-wrap: balance;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+  }
+  /* Anchored sections land below the sticky header */
+  section[id] {
+    scroll-margin-top: 4rem;
+  }
+  body {
+    background: var(--bg);
+    color: var(--ink);
+    font-size: 1rem;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  ::selection {
+    background: var(--ink);
+    color: var(--bg);
+  }
+  :focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

@@ -1,71 +1,80 @@
-"use client"
+"use client";
 
-import Link from "next/link"
-import { usePathname } from "next/navigation"
-import { footerNav, isExternal, pageCode, priceNote, site, social } from "@/lib/site"
-import { Container, Crosshair } from "@/components/ui/primitives"
+import Link from "next/link";
+import { motion } from "framer-motion";
+import { EASE } from "@/lib/motion";
 
 export default function Footer() {
-  const pathname = usePathname()
-
   return (
-    <footer className="border-t border-line">
-      <Container className="relative py-16 md:py-24">
-        <Crosshair className="absolute top-0 left-0 -translate-x-1/2 -translate-y-1/2 max-sm:left-4" />
-        <Crosshair className="absolute top-0 right-0 translate-x-1/2 -translate-y-1/2 max-sm:right-4" />
-
-        <div className="flex flex-col gap-3">
-          <Link href="/" className="label-mono w-fit text-14 tracking-[0.16em] text-ink">
-            {site.name}
-          </Link>
-          <p className="max-w-sm text-14 text-ink-2">
-            Custom websites, web apps and iOS apps, designed and engineered end to end. {priceNote}.
-          </p>
-        </div>
-
-        <div className="mt-12 grid grid-cols-2 gap-10 border-t border-line pt-10 sm:grid-cols-4">
-          {footerNav.map((group) => (
-            <div key={group.title} className="flex flex-col gap-4">
-              <span className="label-mono text-ink-2">{group.title}</span>
-              <ul className="flex flex-col gap-2">
-                {group.links.map((link) => (
-                  <li key={link.label}>
-                    <Link href={link.href} className="text-14 text-ink transition-colors duration-200 hover:text-ink-2">
-                      {link.label}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          ))}
-          <div className="flex flex-col gap-4">
-            <span className="label-mono text-ink-2">Elsewhere</span>
-            <ul className="flex flex-col gap-2">
-              {social.map((link) => (
-                <li key={link.label}>
-                  <a
-                    href={isExternal(link.href) ? link.href : "#"}
-                    target="_blank"
-                    rel="noreferrer"
-                    className="text-14 text-ink transition-colors duration-200 hover:text-ink-2"
-                  >
-                    {link.label}
-                  </a>
-                </li>
-              ))}
-            </ul>
-          </div>
-        </div>
-      </Container>
-
-      <div className="border-t border-line">
-        <Container className="label-mono flex h-14 items-center justify-between gap-4 text-ink-2">
-          <span>
-            {site.domain} <span aria-hidden>·</span> {pageCode(pathname)}
+    <footer className="border-t border-black/10 px-6 md:px-12 pt-20 pb-10">
+      {/* CTA */}
+      <motion.div
+        initial={{ opacity: 0, y: 40 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: "-80px" }}
+        transition={{ duration: 0.8, ease: EASE }}
+        className="mb-20"
+      >
+        <h2 className="text-5xl lg:text-6xl font-black tracking-tight leading-[0.88]">
+          Let&apos;s make
+          <br />
+          something great.
+        </h2>
+        <a
+          href="mailto:contact@djwooster.com"
+          className="inline-flex items-center gap-3 mt-10 text-sm tracking-widest uppercase group"
+        >
+          <span className="border-b border-black pb-0.5 group-hover:pr-4 transition-all duration-300">
+            contact@djwooster.com
           </span>
-          <span>© {new Date().getFullYear()} {site.name}</span>
-        </Container>
+          <span className="group-hover:translate-x-1 transition-transform duration-300">
+            →
+          </span>
+        </a>
+      </motion.div>
+
+      {/* Bottom bar */}
+      <div className="flex flex-col md:flex-row md:items-center justify-between gap-6 pt-8 border-t border-black/10">
+        <p className="text-sm tracking-widest uppercase text-black/30">
+          © 2025 DJ Wooster
+        </p>
+
+        <nav className="flex gap-8">
+          {[
+            { label: "Work", href: "/#work" },
+            { label: "Process", href: "/#process" },
+            { label: "About", href: "/#about" },
+          ].map((link) => (
+            <Link
+              key={link.label}
+              href={link.href}
+              className="text-sm tracking-widest uppercase text-black/40 hover:text-black transition-colors duration-200"
+            >
+              {link.label}
+            </Link>
+          ))}
+        </nav>
+
+        <div className="flex gap-8">
+          {[
+            {
+              label: "LinkedIn",
+              href: "https://www.linkedin.com/in/djwooster/",
+              openInNewTab: true,
+            },
+            // { label: "Dribbble", href: "#" },
+            // { label: "Instagram", href: "#" },
+          ].map((link) => (
+            <a
+              key={link.label}
+              href={link.href}
+              className="text-sm tracking-widest uppercase text-black/40 hover:text-black transition-colors duration-200"
+            >
+              {link.label}
+            </a>
+          ))}
+        </div>
       </div>
     </footer>
-  )
+  );
 }
